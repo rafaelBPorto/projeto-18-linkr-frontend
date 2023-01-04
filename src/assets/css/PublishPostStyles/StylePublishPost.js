@@ -11,6 +11,10 @@ export const StylePublishPost = styled.div `
     display: flex;
     flex-direction: row;
 
+    h1{
+        width:100%;
+    }
+
     //Remover depois:
     background-color: red;
     `
