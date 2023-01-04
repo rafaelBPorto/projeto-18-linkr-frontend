@@ -3,6 +3,7 @@ import { StylePublishPost } from "../../../../assets/css/PublishPostStyles/Style
 import { StylePublishPostLeft } from "../../../../assets/css/PublishPostStyles/StylePublishPostLeft"
 import { StyleUserImg } from "../../../../assets/css/StyleUserImg"
 import userImg from "../../../../assets/imgs/userImg.svg"
+import PublishPostForm from "./PublishPostForm"
 export default function PublishPost(){
 
     return(
@@ -10,7 +11,8 @@ export default function PublishPost(){
             <StylePublishPostLeft>
                 <StyleUserImg  src={userImg}/>
             </StylePublishPostLeft>
-            <div> What are you going to share today?</div>
+            
+            <PublishPostForm />
         </StylePublishPost>
     )
 }
