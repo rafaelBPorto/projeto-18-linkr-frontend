@@ -6,6 +6,5 @@ export const StylePublishPostLeft = styled.div `
     display: flex;
     justify-content: center;
     
-    //remover depois
-    background-color: blue;
+    background:#FFFFFF;
 `

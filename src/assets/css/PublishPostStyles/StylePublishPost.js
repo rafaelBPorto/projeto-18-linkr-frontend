@@ -6,7 +6,7 @@ export const StylePublishPost = styled.div `
     height: 209px;
     border-radius: 16px;
     padding: 16px;
-    gap: 5px;
+    gap: 20px;
 
     display: flex;
     flex-direction: row;
@@ -15,7 +15,6 @@ export const StylePublishPost = styled.div `
         width:100%;
     }
 
-    //Remover depois:
-    background-color: red;
-    `
+    background: #FFFFFF;
+`
 
