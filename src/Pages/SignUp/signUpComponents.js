@@ -4,13 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form } from "../SignIn/Components/signInComponents";
 
 export function SignUpForm() {
-
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const [signUp, setSignUp] = useState({
     email: "",
     password: "",
     username: "",
-    pictureUrl: ""
+    pictureUrl: "",
   });
 
   function handleSignUp(e) {
@@ -21,9 +20,9 @@ const navigate = useNavigate();
     });
   }
 
-  function submitSignUp(e) {
+  async function submitSignUp(e) {
     e.preventDefault();
-    console.log(signUp);
+    
     axios
       .post(`//localhost:4000/sign-up`, signUp)
       .then((res) => {
@@ -62,7 +61,7 @@ const navigate = useNavigate();
       ></input>
       <input
         name="pictureUrl"
-        value={signUp. pictureUrl}
+        value={signUp.pictureUrl}
         type="url"
         required
         onChange={handleSignUp}

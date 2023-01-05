@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export function Banner() {
   return (
@@ -16,6 +17,7 @@ export function Banner() {
 }
 
 export function LoginForm() {
+  const navigate = useNavigate();
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -30,7 +32,14 @@ export function LoginForm() {
   }
 
   function submitLogin(e) {
-    alert(`${login.email}, ${login.password}`);
+    e.preventDefault();
+    axios.post(`//localhost:4000`, login)
+      .then((res) => {
+       console.log(res.data);
+      })
+      .catch((err) => {
+       alert(err.response.data);
+      });
   }
 
   return (
