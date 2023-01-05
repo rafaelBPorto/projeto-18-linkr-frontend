@@ -36,7 +36,7 @@ export default function Header() {
             size="30px"
           ></RiArrowDownSLine>
         )}
-        <img src="https://static-cse.canva.com/blob/759727/ComoTirareEditarSuaFotoparaPerfilemRedesSociaisfeaturedimagee1559023010630.jpg"></img>
+        <img  onClick={handleArrowClick} src="https://static-cse.canva.com/blob/759727/ComoTirareEditarSuaFotoparaPerfilemRedesSociaisfeaturedimagee1559023010630.jpg"></img>
         <Logout onClick={handleLogout} display={arrowClicked}>Logout</Logout>
       </div>
     </Navbar>
