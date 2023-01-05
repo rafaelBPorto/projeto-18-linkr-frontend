@@ -22,15 +22,13 @@ export function SignUpForm() {
 
   async function submitSignUp(e) {
     e.preventDefault();
-    
-    axios
-      .post(`//localhost:4000/sign-up`, signUp)
-      .then((res) => {
-        navigate("/");
-      })
-      .catch((e) => {
-        alert(e.response.data);
-      });
+
+    try {
+      const response = await axios.post(`//localhost:4000/sign-up`, signUp);
+      navigate("/");
+    } catch (err) {
+      alert(err.response.data);
+    }
   }
 
   return (

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../../../Contexts/userContext";
 
 export function Banner() {
   return (
@@ -17,6 +18,9 @@ export function Banner() {
 }
 
 export function LoginForm() {
+
+  const [userToken, setUserToken] = useContext(UserContext);
+
   const navigate = useNavigate();
   const [login, setLogin] = useState({
     email: "",
@@ -31,15 +35,17 @@ export function LoginForm() {
     });
   }
 
-  function submitLogin(e) {
+  async function submitLogin(e) {
     e.preventDefault();
-    axios.post(`//localhost:4000`, login)
-      .then((res) => {
-       console.log(res.data);
-      })
-      .catch((err) => {
-       alert(err.response.data);
-      });
+
+    try {
+      const response = await axios.post(`//localhost:4000`, login);
+      setUserToken(response.data);
+      localStorage.setItem('token', response.data);
+      navigate('/timeline')
+    } catch (err) {
+      alert(err.response.data);
+    }
   }
 
   return (
