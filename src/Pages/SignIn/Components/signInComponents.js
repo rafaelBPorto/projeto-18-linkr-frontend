@@ -7,12 +7,14 @@ import { UserContext } from "../../../Contexts/userContext";
 export function Banner() {
   return (
     <BannerContainer>
-      <h1>linkr</h1>
+      <div>
+        <h1>linkr</h1>
 
-      <h2>
-        save, share and discover <br></br>
-        the best links on the web
-      </h2>
+        <h2>
+          save, share and discover <br></br>
+          the best links on the web
+        </h2>
+      </div>
     </BannerContainer>
   );
 }
@@ -138,6 +140,7 @@ const BannerContainer = styled.div`
     font-family: "Passion One";
     font-weight: 700;
     font-size: 100px;
+    align-self: center;
   }
   h2 {
     font-family: "Oswald";
