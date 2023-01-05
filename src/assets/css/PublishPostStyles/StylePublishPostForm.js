@@ -6,13 +6,10 @@ export const StylePublishPostForm = styled.form`
         flex-direction: column;
         width: 100%;
 
-        h1{
-            font-family: 'Lato';
-            font-style: normal;
-            font-weight: 300;
-            color: #707070;
-            margin: 0 0 5px 0;
-        }
+        font-family: 'Lato', sans-serif;   
+        font-size: 20px; 
+        font-weight: 300;
+
         input {
             box-sizing:border-box;
         
@@ -22,10 +19,18 @@ export const StylePublishPostForm = styled.form`
             border: unset;
             border-radius: 5px;
 
-            font-weight: 400;
-            font-size: 20px;
+            font-family: 'Lato', sans-serif;   
+            font-size: 15px; 
+            font-weight: 300;
 
             background: #EFEFEF;
+    }
+
+    input::placeholder{
+        color:#949494;
+        font-family: 'Lato', sans-serif;   
+        font-size: 15px; 
+        font-weight: 300;
     }
 
     input:nth-child(3){
@@ -43,6 +48,8 @@ export const StylePublishPostForm = styled.form`
         border: none;
 
         /* font-family: 'Lato'; */
+
+        font-family: 'Lato', sans-serif;   
         font-weight: 700;
         font-size: 14px;
         color: #FFFFFF;

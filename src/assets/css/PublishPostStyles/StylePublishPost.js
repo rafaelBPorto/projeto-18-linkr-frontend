@@ -6,16 +6,19 @@ export const StylePublishPost = styled.div `
     height: 209px;
     border-radius: 16px;
     padding: 16px;
-    gap: 5px;
+    gap: 20px;
 
     display: flex;
     flex-direction: row;
 
     h1{
         width:100%;
+        font-family: 'Lato', sans-serif;   
+        font-size: 20px; 
+        font-weight: 300;
+        margin-bottom: 20px;
     }
 
-    //Remover depois:
-    background-color: red;
-    `
+    background: #FFFFFF;
+`
 
