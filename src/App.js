@@ -18,7 +18,7 @@ function App() {
       <BrowserRouter>
       <UserContext.Provider value={[userToken, setUserToken]}>
         <Routes>
-          <Route path="/timeline/:id" element={<TimeLine />} />
+          <Route path="/timeline" element={<TimeLine />} />
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
         </Routes>
