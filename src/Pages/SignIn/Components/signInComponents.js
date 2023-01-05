@@ -90,11 +90,15 @@ export const Form = styled.form`
   justify-content: center;
   background-color: #333;
   input {
+    font-family: "Oswald";
+    font-size: 20px;
+    font-weight: 400;
     width: 80%;
     border-radius: 6px;
     outline: none;
     height: 65px;
     margin: 6px;
+    background: white;
     ::placeholder {
       font-family: "Oswald";
       color: #9f9f9f;
@@ -110,6 +114,7 @@ export const Form = styled.form`
     border-radius: 6px;
     font-size: 27px;
     margin: 6px;
+    border: none;
   }
   p {
     font-family: "Oswald";
