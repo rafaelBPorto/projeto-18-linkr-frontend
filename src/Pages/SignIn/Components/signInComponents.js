@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function Banner() {
   return (
@@ -60,7 +60,7 @@ export function LoginForm() {
   );
 }
 
-const Form = styled.form`
+export const Form = styled.form`
   font-family: "Oswald";
   width: 25%;
   display: flex;
