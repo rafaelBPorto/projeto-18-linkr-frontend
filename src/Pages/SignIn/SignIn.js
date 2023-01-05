@@ -31,7 +31,7 @@ export const Container = styled.div `
     background-color: white;
     width: 100%;
     height: 100vh;
-    @media (max-width: 600px) {
+    @media (max-width: 811px) {
         display: flex;
         flex-direction: column;
   }

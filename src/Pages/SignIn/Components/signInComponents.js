@@ -130,7 +130,7 @@ export const Form = styled.form`
     align-items: center;
     justify-content: center;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 811px) {
     width: 100%;
     height: 70%;
     input {
@@ -159,7 +159,7 @@ const BannerContainer = styled.div`
     font-size: 43px;
     font-weight: 700;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 811px) {
     width: 100%;
     height: 30%;
     div {
