@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form } from "../SignIn/Components/signInComponents";
 
 export function SignUpForm() {
+  const [disabled, setDisabled] = useState(false);
   const navigate = useNavigate();
   const [signUp, setSignUp] = useState({
     email: "",
@@ -22,11 +23,13 @@ export function SignUpForm() {
 
   async function submitSignUp(e) {
     e.preventDefault();
+    setDisabled(true);
 
     try {
       const response = await axios.post(`//localhost:4000/sign-up`, signUp);
       navigate("/");
     } catch (err) {
+      setDisabled(false);
       alert(err.response.data);
     }
   }
@@ -65,7 +68,9 @@ export function SignUpForm() {
         onChange={handleSignUp}
         placeholder="picture url"
       ></input>
-      <button type="submit">Sign Up</button>
+      <button disabled={disabled} type="submit">
+        Sign Up
+      </button>
 
       <Link to="/">
         <p>Switch back to log in </p>

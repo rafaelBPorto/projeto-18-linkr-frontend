@@ -18,8 +18,8 @@ export function Banner() {
 }
 
 export function LoginForm() {
-
   const [userToken, setUserToken] = useContext(UserContext);
+  const [disabled, setDisabled] = useState(false);
 
   const navigate = useNavigate();
   const [login, setLogin] = useState({
@@ -37,14 +37,16 @@ export function LoginForm() {
 
   async function submitLogin(e) {
     e.preventDefault();
+    setDisabled(true);
 
     try {
       const response = await axios.post(`//localhost:4000`, login);
       setUserToken(response.data);
-      localStorage.setItem('token', response.data);
-      navigate('/timeline')
+      localStorage.setItem("token", response.data);
+      navigate("/timeline");
     } catch (err) {
-      alert(err);
+      setDisabled(false);
+      alert(err.response.data);
     }
   }
 
@@ -66,7 +68,9 @@ export function LoginForm() {
         onChange={handleLogin}
         placeholder="password"
       ></input>
-      <button type="submit">Log In</button>
+      <button disabled={disabled} type="submit">
+        Log In
+      </button>
 
       <Link to="/sign-up">
         <p>First time? Create an account! </p>
