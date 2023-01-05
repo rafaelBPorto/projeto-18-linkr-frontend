@@ -13,7 +13,10 @@ export const StylePublishPost = styled.div `
 
     h1{
         width:100%;
-        font-family: 'Lato'
+        font-family: 'Lato', sans-serif;   
+        font-size: 20px; 
+        font-weight: 300;
+        margin-bottom: 20px;
     }
 
     background: #FFFFFF;
