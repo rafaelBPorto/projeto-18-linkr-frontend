@@ -26,8 +26,6 @@ export default function SignIn(){
 }
 
 
-
-
 export const Container = styled.div `
     display: flex;
     background-color: white;

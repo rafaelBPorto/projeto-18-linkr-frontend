@@ -44,7 +44,7 @@ export function LoginForm() {
       localStorage.setItem('token', response.data);
       navigate('/timeline')
     } catch (err) {
-      alert(err.response.data);
+      alert(err);
     }
   }
 
