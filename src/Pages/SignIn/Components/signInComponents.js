@@ -48,7 +48,7 @@ export function LoginForm() {
       navigate("/timeline");
     } catch (err) {
       setDisabled(false);
-      alert(err.response.data);
+      alert(err);
     }
   }
 
