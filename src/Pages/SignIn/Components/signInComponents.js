@@ -117,7 +117,7 @@ export const Form = styled.form`
     border: none;
   }
   p {
-    font-family: "Oswald";
+    font-family: "Lato";
     text-decoration: underline;
     width: 100%;
     color: white;
@@ -129,6 +129,13 @@ export const Form = styled.form`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 70%;
+    input {
+      height: 55px;
+    }
   }
 `;
 
@@ -151,5 +158,20 @@ const BannerContainer = styled.div`
     font-family: "Oswald";
     font-size: 43px;
     font-weight: 700;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 30%;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    } h1 {
+      font-size: 76px;
+    } h2 {
+      font-size: 23px;
+    }
+    
   }
 `;
