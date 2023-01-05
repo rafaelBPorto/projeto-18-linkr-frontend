@@ -4,13 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form } from "../SignIn/Components/signInComponents";
 
 export function SignUpForm() {
-
-const navigate = useNavigate();
+  const [disabled, setDisabled] = useState(false);
+  const navigate = useNavigate();
   const [signUp, setSignUp] = useState({
     email: "",
     password: "",
     username: "",
-    pictureUrl: ""
+    pictureUrl: "",
   });
 
   function handleSignUp(e) {
@@ -21,17 +21,17 @@ const navigate = useNavigate();
     });
   }
 
-  function submitSignUp(e) {
+  async function submitSignUp(e) {
     e.preventDefault();
-    console.log(signUp);
-    axios
-      .post(`//localhost:4000/sign-up`, signUp)
-      .then((res) => {
-        navigate("/");
-      })
-      .catch((e) => {
-        alert(e.response.data);
-      });
+    setDisabled(true);
+
+    try {
+      const response = await axios.post(`//localhost:4000/sign-up`, signUp);
+      navigate("/");
+    } catch (err) {
+      setDisabled(false);
+      alert(err.response.data);
+    }
   }
 
   return (
@@ -62,13 +62,15 @@ const navigate = useNavigate();
       ></input>
       <input
         name="pictureUrl"
-        value={signUp. pictureUrl}
+        value={signUp.pictureUrl}
         type="url"
         required
         onChange={handleSignUp}
         placeholder="picture url"
       ></input>
-      <button type="submit">Sign Up</button>
+      <button disabled={disabled} type="submit">
+        Sign Up
+      </button>
 
       <Link to="/">
         <p>Switch back to log in </p>
