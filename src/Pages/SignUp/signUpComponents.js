@@ -1,14 +1,16 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form } from "../SignIn/Components/signInComponents";
 
-
 export function SignUpForm() {
+
+const navigate = useNavigate();
   const [signUp, setSignUp] = useState({
     email: "",
     password: "",
-    name: "",
-    photo: ""
+    username: "",
+    pictureUrl: ""
   });
 
   function handleSignUp(e) {
@@ -22,6 +24,14 @@ export function SignUpForm() {
   function submitSignUp(e) {
     e.preventDefault();
     console.log(signUp);
+    axios
+      .post(`//localhost:4000/sign-up`, signUp)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((e) => {
+        alert(e.response.data);
+      });
   }
 
   return (
@@ -43,16 +53,16 @@ export function SignUpForm() {
         placeholder="password"
       ></input>
       <input
-        name="name"
-        value={signUp.name}
+        name="username"
+        value={signUp.username}
         type="text"
         required
         onChange={handleSignUp}
         placeholder="username"
       ></input>
       <input
-        name="photo"
-        value={signUp.photo}
+        name="pictureUrl"
+        value={signUp. pictureUrl}
         type="url"
         required
         onChange={handleSignUp}
