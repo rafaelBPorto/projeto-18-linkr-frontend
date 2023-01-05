@@ -48,7 +48,6 @@ export default function PublishPostForm() {
         type="text"
         placeholder="Awesome article about #javascript"
         onChange={(e) => setDescription(e.target.value)}
-        required
       />
       <button type="onSubmit">Publish</button>
     </StylePublishPostForm>
