@@ -2,55 +2,42 @@ import { ReactTagify } from "react-tagify";
 import styled from "styled-components";
 import Header from "../Contants/Header.js";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const posts = [
-  { id: 1, description: "lalala #react #teste", user_id: 1 },
-  {
-    id: 2,
-    description: "post1 #react #teste",
-    url: "https://www.google.com",
-    user_id: 1,
-  },
-  {
-    id: 3,
-    description: "post2 #react #teste",
-    url: "https://www.google.com",
-    user_id: 1,
-  },
-  {
-    id: 4,
-    description: "post3 #react #teste",
-    url: "https://www.google.com",
-    user_id: 1,
-  },
-  {
-    id: 5,
-    description: "post4 #react #teste",
-    url: "https://www.google.com",
-    user_id: 1,
-  },
-  {
-    id: 6,
-    description: "post5 #react #teste",
-    url: "https://www.google.com",
-    user_id: 1,
-  },
-];
 
 export default function HashtagPage() {
+
+  const {hashtag} = useParams();
+  const [posts, setPosts] = useState([]);
+  async function getPost() {
+    try {
+      const response = await axios.get(`//localhost:4000/hashtag/${hashtag}`);
+      setPosts(response.data);
+    } catch (err) {
+      alert(err);
+    }
+  }
+
+  useEffect(() => {
+   getPost();
+  }, [hashtag])
+
   return (
     <PageContainer>
       <Header />
       <PostsContainer>
         {posts.map((i, idx) => (
-          <Post key={idx} description={i.description} url={i.url} />
+          <Post key={idx} name={i.name} photo={i.photo} description={i.description} url={i.url} />
         ))}
       </PostsContainer>
     </PageContainer>
   );
 }
 
-function Post({ description, url }) {
+function Post({ description, url, photo, name }) {
+  const navigate = useNavigate();
   const tagStyle = {
     fontWeight: 700,
     cursor: "pointer",
@@ -59,14 +46,18 @@ function Post({ description, url }) {
   return (
     <PostContainer>
       <UserLeftSide>
-        <img src="https://static-cse.canva.com/blob/759727/ComoTirareEditarSuaFotoparaPerfilemRedesSociaisfeaturedimagee1559023010630.jpg" />
+        <img src={photo} />
         <AiOutlineHeart color={"red"} />
         <AiFillHeart color={"red"} />
       </UserLeftSide>
       <PostInfoRightSide>
+        <p>{name}</p>
         <ReactTagify
           tagStyle={tagStyle}
-          tagClicked={(tag) => alert(`você clicou na tag ${tag}`)}
+          tagClicked={(tag) => {
+            const newTag = tag.replace('#', '');
+            navigate(`/hashtag/${newTag}`);
+          }}
         >
           <p>{description}</p>
         </ReactTagify>
@@ -115,8 +106,8 @@ const UserLeftSide = styled.div`
 const PostInfoRightSide = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-around;
   width: 100%;
 `;
 

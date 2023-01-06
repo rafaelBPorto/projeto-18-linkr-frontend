@@ -37,7 +37,7 @@ export default function Header() {
           ></RiArrowDownSLine>
         )}
         <img  onClick={handleArrowClick} src="https://static-cse.canva.com/blob/759727/ComoTirareEditarSuaFotoparaPerfilemRedesSociaisfeaturedimagee1559023010630.jpg"></img>
-        <Logout onClick={handleLogout} display={arrowClicked}>Logout</Logout>
+        <Logout onClick={handleLogout} display={(arrowClicked ? `initial` : `none`)}>Logout</Logout>
       </div>
     </Navbar>
   );
@@ -83,5 +83,5 @@ const Logout = styled.div`
   width: 150px;
   height: 47px;
   border-radius: 0px 0px 20px 20px;
-  display: ${(props) => (props.display ? `initial` : `none`)};
+  display: ${(props) => (props.display)};
 `;

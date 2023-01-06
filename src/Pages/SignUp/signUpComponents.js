@@ -26,7 +26,7 @@ export function SignUpForm() {
     setDisabled(true);
 
     try {
-      const response = await axios.post(`//localhost:4000/sign-up`, signUp);
+      await axios.post(`//localhost:4000/sign-up`, signUp);
       navigate("/");
     } catch (err) {
       setDisabled(false);
