@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { RiArrowDownSLine } from "react-icons/ri";
-import { RiArrowUpSLine } from "react-icons/ri";
+import { RiArrowDownSLine ,  RiArrowUpSLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+
 
 export default function Header() {
   const [arrowClicked, setArrowClicked] = useState(false);
