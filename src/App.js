@@ -22,7 +22,6 @@ function App() {
           <Route path="/timeline/:id" element={<TimeLine />} />
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/hashtag" element={<HashtagPage />} />
           <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
         </Routes>
         </UserContext.Provider>
