@@ -7,6 +7,7 @@ export const StylePublishPost = styled.div `
     border-radius: 16px;
     padding: 16px;
     gap: 20px;
+    margin-bottom: 25px;
 
     display: flex;
     flex-direction: row;
