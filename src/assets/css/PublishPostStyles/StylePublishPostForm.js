@@ -10,16 +10,17 @@ export const StylePublishPostForm = styled.form`
         font-size: 20px; 
         font-weight: 300;
 
+        box-sizing:border-box;
+
         input {
-            box-sizing:border-box;
-        
+            width: 100%;
+
             height: 30px;
             margin-bottom: 5px;
 
             border: unset;
             border-radius: 5px;
-
-            font-family: 'Lato', sans-serif;   
+   
             font-size: 15px; 
             font-weight: 300;
 
@@ -28,7 +29,6 @@ export const StylePublishPostForm = styled.form`
 
     input::placeholder{
         color:#949494;
-        font-family: 'Lato', sans-serif;   
         font-size: 15px; 
         font-weight: 300;
     }
@@ -46,10 +46,7 @@ export const StylePublishPostForm = styled.form`
         background: #1877F2;
         border-radius: 5px;
         border: none;
-
-        /* font-family: 'Lato'; */
-
-        font-family: 'Lato', sans-serif;   
+   
         font-weight: 700;
         font-size: 14px;
         color: #FFFFFF;

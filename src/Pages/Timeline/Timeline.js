@@ -1,12 +1,27 @@
 import React from "react";
+import { StyleDescriptionPAge } from "../../assets/css/StyleDescriptionPage";
+import { StylePage } from "../../assets/css/StylePage";
+import Header from "../../Components/Header";
+import Posts from "./components/Posts/Post";
 import PublishPost from "./components/PublishPost/PublishPost";
 
-export default function TimeLine(){
+export default function TimeLine() {
 
-    return(
+    return (
         <>
-            Timeline
-            <PublishPost />
+            <Header />
+
+            <StylePage>
+
+                <StyleDescriptionPAge>
+                    timeline
+                </StyleDescriptionPAge>
+
+                <PublishPost />
+
+                <Posts />
+                <Posts />
+            </StylePage>
         </>
     )
 }

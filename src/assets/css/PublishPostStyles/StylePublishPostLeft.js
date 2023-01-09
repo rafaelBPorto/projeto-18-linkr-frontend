@@ -7,4 +7,8 @@ export const StylePublishPostLeft = styled.div `
     justify-content: center;
     
     background:#FFFFFF;
+
+    @media (max-width: 811px) {
+        display: none;
+    }
 `
