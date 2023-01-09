@@ -21,7 +21,7 @@ export default function TimeLine() {
                     Authorization: `Bearer ${token}`
                 }
             });
-            setPosts(postsPromisses);
+            setPosts(postsPromisses.data);
             console.log(postsPromisses.data)
         } catch (error) {
             console.log(error.response.data);
@@ -30,7 +30,7 @@ export default function TimeLine() {
 
     useEffect(() => {
         getPost()
-    }, [])
+    }, [posts])
 
     return (
         <>
@@ -44,7 +44,7 @@ export default function TimeLine() {
                     <p>carregando...</p>
                 ) : (
                     <>
-                        {posts.data.map((post, index)=>{
+                        {posts.map((post, index)=>{
                              <Post
                              key={index}
                              title={post.linkTitle}

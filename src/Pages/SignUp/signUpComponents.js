@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import BASE_URL from "../../constants/URL";
 import { Form } from "../SignIn/Components/signInComponents";
 
 export function SignUpForm() {
@@ -26,7 +27,7 @@ export function SignUpForm() {
     setDisabled(true);
 
     try {
-      await axios.post(`//localhost:4000/sign-up`, signUp);
+      await axios.post(`${BASE_URL}/sign-up`, signUp);
       navigate("/");
     } catch (err) {
       setDisabled(false);
