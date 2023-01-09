@@ -8,7 +8,7 @@ import trahsIcon from "../../../../assets/imgs/trahsIcon.svg"
 import userImg from "../../../../assets/imgs/userImg.svg"
 import heartOutline from "../../../../assets/imgs/heartOutline.svg"
 
-export default function Posts() {
+export default function Post({title, descripition, url, image}) {
     return (
         <StylePost>
 
@@ -24,9 +24,9 @@ export default function Posts() {
                 </StylePostDescription>
                 <StylePostLink>
                     <StylePostLinkText>
-                        <h1>Como aplicar o Material UI em um projeto React</h1>
-                        <p>Hey! I have moved this tutorial to my personal blog. Same content, new location. Sorry about making you click through to another page.</p>
-                        <a href="https://medium.com/@pshrmn/a-simple-react-router">https://medium.com/@pshrmn/a-simple-react-router</a>
+                        <h1>{title}</h1>
+                        <p>{descripition}</p>
+                        <a href={url}>{url}</a>
                     </StylePostLinkText>
                     <StylePostLinkImg src="https://blog.fellyph.com.br/wp-content/uploads/2016/06/react-js.png" />
                 </StylePostLink>

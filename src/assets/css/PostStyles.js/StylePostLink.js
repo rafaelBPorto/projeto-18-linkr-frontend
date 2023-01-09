@@ -9,6 +9,9 @@ export const StylePostLink = styled.div`
     border: 1px solid #4D4D4D;
     border-radius: 11px;
 
+    overflow:hidden;
+    /* flex-wrap:wrap; */
+
     h1{
         font-size: 16px;
         color: #CECECE;
@@ -58,6 +61,7 @@ export const StylePostLink = styled.div`
 
 export const StylePostLinkText = styled.div`
     margin: 15px;
+    width:69%;
     @media (max-width: 811px){
         margin: 10px 0 10px 10px;
 
