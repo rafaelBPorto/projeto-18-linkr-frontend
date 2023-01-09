@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { RiArrowDownSLine ,  RiArrowUpSLine } from "react-icons/ri";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input"; 
-
+import axios from "axios";
 
 export default function Header() {
   const [arrowClicked, setArrowClicked] = useState(false);
