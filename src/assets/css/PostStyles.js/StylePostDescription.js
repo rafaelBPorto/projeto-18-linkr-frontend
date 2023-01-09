@@ -5,6 +5,7 @@ export const StylePostDescription = styled.div`
     width:100%;
     display: flex;
     flex-wrap:wrap;
+    overflow:hidden;
 
     h1{
         width: 100%;
@@ -37,6 +38,7 @@ export const StylePostDescription = styled.div`
 
         h1{
             font-size: 17px;
+            overflow:hidden;
         }
         p{
             font-size: 15px;
