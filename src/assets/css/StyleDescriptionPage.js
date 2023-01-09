@@ -13,4 +13,8 @@ export const StyleDescriptionPAge = styled.div`
     font-size: 43px;
     color: #FFFFFF;
 
+    @media (max-width: 811px) {
+        width: 100%;
+  }
+
 `
