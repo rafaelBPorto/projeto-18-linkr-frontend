@@ -30,15 +30,16 @@ export const StylePostLink = styled.div`
         font-size: 11px;
         line-height: 13px;
         color: #CECECE;
+        word-wrap:break-word;
         }
 
     @media (max-width: 811px) {
         width: 100%;
-        
 
         h1{
             font-size: 11px;
             line-height: 13px;
+            max-width:90%
             
         }
         p{
@@ -50,9 +51,7 @@ export const StylePostLink = styled.div`
         a{
             font-size: 11px;
             margin-bottom: 3px;
-            line-height: 11px;
-
-
+            line-height: 11px;            
         }
   }
 `
@@ -60,7 +59,7 @@ export const StylePostLink = styled.div`
 export const StylePostLinkText = styled.div`
     margin: 15px;
     @media (max-width: 811px){
-        margin: 7px;
+        margin: 10px 0 10px 10px;
 
     }
 `

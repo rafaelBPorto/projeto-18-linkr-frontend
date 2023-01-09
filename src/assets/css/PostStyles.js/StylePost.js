@@ -17,7 +17,9 @@ export const StylePost = styled.div`
     font-weight: 400;
 
     @media (max-width: 811px) {
-        min-width: 100vw;
+        min-width: 100%;
         border-radius: 0;
+        padding: 14px;
+        gap: 10px;
   }
 `

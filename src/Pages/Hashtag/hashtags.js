@@ -1,6 +1,6 @@
 import { ReactTagify } from "react-tagify";
 import styled from "styled-components";
-import Header from "../../Contants/Header.js";
+import Header from "../../Components/Header";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";

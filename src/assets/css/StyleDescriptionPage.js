@@ -15,6 +15,7 @@ export const StyleDescriptionPAge = styled.div`
 
     @media (max-width: 811px) {
         width: 100%;
+        padding-left:17px;
   }
 
 `
