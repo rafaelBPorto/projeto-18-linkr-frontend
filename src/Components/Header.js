@@ -51,21 +51,27 @@ const Navbar = styled.div`
   background-color: #151515;
   color: white;
   top: 0;
-  margin-bottom: 300px;
+  /* margin-bottom: 300px; */
   align-items: center;
   justify-content: space-between;
   p {
     font-family: "Passion One";
     font-size: 49px;
     font-weight: 700;
-    margin-left: 20px;
+    margin-left: 17px;
   }
   img {
     border-radius: 50%;
     width: 53px;
     height: 53px;
     margin-right: 20px;
+    @media (max-width: 811px) {
+      margin-right: 10px;
+
+    }
   }
+
+
 `;
 
 const Logout = styled.div`

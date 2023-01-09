@@ -7,6 +7,7 @@ export const StylePublishPost = styled.div `
     border-radius: 16px;
     padding: 16px;
     gap: 20px;
+    margin-bottom: 25px;
 
     display: flex;
     flex-direction: row;
@@ -20,5 +21,15 @@ export const StylePublishPost = styled.div `
     }
 
     background: #FFFFFF;
+    
+    @media (max-width: 811px) {
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 0;
+
+        h1{
+            text-align: center;
+        }
+  }
 `
 
