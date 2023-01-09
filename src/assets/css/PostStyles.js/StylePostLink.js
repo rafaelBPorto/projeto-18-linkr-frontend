@@ -9,10 +9,6 @@ export const StylePostLink = styled.div`
     border: 1px solid #4D4D4D;
     border-radius: 11px;
 
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-
     h1{
         font-size: 16px;
         color: #CECECE;

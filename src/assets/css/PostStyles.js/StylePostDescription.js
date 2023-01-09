@@ -5,12 +5,11 @@ export const StylePostDescription = styled.div`
 
     width:100%;
 
+
     h1{
         width: 502px;
         margin-bottom: 17px;
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 400;
+
         font-size: 19px;
         color: #FFFFFF;
 
@@ -31,10 +30,6 @@ export const StylePostDescription = styled.div`
 
         width: 502px;
         margin-bottom: 12px;
-
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 400;
         font-size: 17px;
         color: #B7B7B7; 
     }
