@@ -1,12 +1,29 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { RiArrowDownSLine ,  RiArrowUpSLine } from "react-icons/ri";
+import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { DebounceInput } from "react-debounce-input"; 
 
 
 export default function Header() {
   const [arrowClicked, setArrowClicked] = useState(false);
   const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [search, setSearch] = useState([]);
+
+  useEffect(() => {
+    axios
+      .post("https://localhost:4000/timeline/search", name)
+      .then((res) => {
+        setSearch(res.data);
+        console.log(search);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [name]);
 
   function handleArrowClick() {
     if (arrowClicked) {
@@ -24,6 +41,31 @@ export default function Header() {
   return (
     <Navbar>
       <p>linkr</p>
+      <Search>
+        <SearchBar>
+        <DebounceInput
+          minLength={3}
+          debounceTimeout={300}
+          type="search"
+          required
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+          placeholder="Search for people"
+        />
+        <Button>
+          <AiOutlineSearch />
+        </Button>
+        </SearchBar>
+        <Sugestions>
+          {search.map((s) => (
+            <Sugestion>
+              <img src={s.photo} />
+              <h1>{s.name}</h1>
+            </Sugestion>
+          ))}
+        </Sugestions>
+      </Search>
+
       <div>
         {arrowClicked ? (
           <RiArrowUpSLine
@@ -85,3 +127,42 @@ const Logout = styled.div`
   border-radius: 0px 0px 20px 20px;
   display: ${(props) => (props.display)};
 `;
+
+
+const Search = styled.div`
+  display: flex;
+  flex-direction:column;
+  input {
+    width: 563px;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 8px;
+  }
+`;
+const Button = styled.button`
+  position: relative;
+  margin-top: 12px;
+  left: -32px;
+  background-color: #ffffff;
+  height: 30px;
+  border: 0px;
+`;
+
+const Sugestion = styled.div`
+  width: 563px;
+  height: 176px;
+  background: #e7e7e7;
+  border-radius: 8px;
+`;
+
+const Sugestions = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SearchBar = styled.div`
+  background-color: #151515;
+  display: flex;
+  align-items: center;
+`
