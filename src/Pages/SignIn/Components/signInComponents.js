@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../../Contexts/userContext";
+import BASE_URL from "../../../constants/URL";
 
 export function Banner() {
   return (
@@ -42,7 +43,7 @@ export function LoginForm() {
     setDisabled(true);
 
     try {
-      const response = await axios.post(`//localhost:4000`, login);
+      const response = await axios.post(`${BASE_URL}`, login);
       setUserToken(response.data);
       localStorage.setItem("token", response.data);
       navigate("/timeline");

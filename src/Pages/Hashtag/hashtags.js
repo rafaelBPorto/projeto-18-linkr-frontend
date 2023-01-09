@@ -5,6 +5,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BASE_URL from "../../constants/URL";
 
 export default function HashtagPage() {
   const { hashtag } = useParams();
@@ -13,9 +14,9 @@ export default function HashtagPage() {
 
   async function getPost() {
     try {
-      const response = await axios.get(`//localhost:4000/hashtag/${hashtag}`);
+      const response = await axios.get(`${BASE_URL}/hashtag/${hashtag}`);
       setPosts(response.data);
-      const response1 = await axios.get(`//localhost:4000/trends`);
+    const response1 = await axios.get(`${BASE_URL}/trends`);
       setTrends(response1.data);
       console.log(response1.data);
     } catch (err) {
