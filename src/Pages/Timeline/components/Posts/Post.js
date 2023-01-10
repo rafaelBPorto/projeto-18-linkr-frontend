@@ -22,7 +22,7 @@ export default function Post({postDescription, link_title, link_descripition, li
                     <h1>Juvenal Juvêncio <img src={trahsIcon} alt="trash" onClick={() => alert("Exlcuir")} /></h1>
                     <p>{postDescription}</p>
                 </StylePostDescription>
-                <StylePostLink href={link_url}>
+                <StylePostLink href={link_url} target="_blank" rel="noopener noreferrer">
                     <StylePostLinkText>
                         <h1>{link_title}</h1>
                         <p>{link_descripition}</p>

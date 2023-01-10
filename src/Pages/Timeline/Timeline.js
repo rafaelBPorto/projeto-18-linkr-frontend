@@ -10,7 +10,6 @@ import PublishPost from "./components/PublishPost/PublishPost";
 export default function TimeLine() {
 
     const token = localStorage.getItem("token")
-    console.log(token);
 
     const [posts, setPosts] = useState();
     const [update, setUpdate] = useState(false);
@@ -24,7 +23,6 @@ export default function TimeLine() {
             });
             setPosts(postsPromisses.data);
             setUpdate(true);
-            console.log(postsPromisses.data)
         } catch (error) {
             console.log(error.response.data);
         }
