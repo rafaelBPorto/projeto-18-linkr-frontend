@@ -13,15 +13,17 @@ export default function TimeLine() {
     console.log(token);
 
     const [posts, setPosts] = useState();
+    const [update, setUpdate] = useState(false);
 
     async function getPost() {
         try {
-            const postsPromisses = await axios.get(`${BASE_URL}/timeline`, {
+            const postsPromisses = await axios.get(`//localhost:4000/timeline`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
             setPosts(postsPromisses.data);
+            setUpdate(true);
             console.log(postsPromisses.data)
         } catch (error) {
             console.log(error.response.data);
@@ -30,29 +32,25 @@ export default function TimeLine() {
 
     useEffect(() => {
         getPost()
-    }, [posts])
+    }, [update])
 
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <StylePage>
                 <StyleDescriptionPAge>
                     timeline
                 </StyleDescriptionPAge>
                 <PublishPost />
-                {posts === undefined ? (
+                {(posts === null || posts === undefined) ? (
                     <p>carregando...</p>
                 ) : (
                     <>
-                        {posts.map((post, index)=>{
-                             <Post
-                             key={index}
-                             title={post.linkTitle}
-                             descriprion={post.linkDescripition}
-                             url={post.linkUrl}
-                             image={post.linklImage}
-                         />
-                        })}
+                    {posts.map((i) => <Post description = {i.linkDescription}
+                    url = {i.linkUrl}
+                    title = {i.linkTitle}
+                    image = {i.linkImage}
+                    />)}
                     </>
                 )}
             </StylePage>

@@ -14,9 +14,9 @@ export default function HashtagPage() {
 
   async function getPost() {
     try {
-      const response = await axios.get(`${BASE_URL}/hashtag/${hashtag}`);
+      const response = await axios.get(`//localhost:4000/hashtag/${hashtag}`);
       setPosts(response.data);
-    const response1 = await axios.get(`${BASE_URL}/trends`);
+    const response1 = await axios.get(`//localhost:4000/trends`);
       setTrends(response1.data);
       console.log(response1.data);
     } catch (err) {
@@ -30,7 +30,7 @@ export default function HashtagPage() {
 
   return (
     <PageContainer>
-      <Header />
+      {/* <Header /> */}
       <PostsTrends>
         <PostsContainer>
           <h1># {hashtag}</h1>

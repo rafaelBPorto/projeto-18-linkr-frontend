@@ -1,3 +1,2 @@
-const BASE_URL = "https://linkr-fz30.onrender.com";
-
+const BASE_URL = "https//localhost:4000";
 export default BASE_URL;

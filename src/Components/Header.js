@@ -15,7 +15,7 @@ export default function Header() {
 
   useEffect(() => {
     axios
-      .post("https://localhost:4000/timeline/search", name)
+      .get("https://localhost:4000/search", name)
       .then((res) => {
         setSearch(res.data);
         console.log(search);

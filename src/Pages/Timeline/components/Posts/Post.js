@@ -22,13 +22,15 @@ export default function Post({title, descripition, url, image}) {
                     <h1>Juvenal Juvêncio <img src={trahsIcon} alt="trash" onClick={() => alert("Exlcuir")} /></h1>
                     <p>Muito maneiro esse tutorial de Material UI com React, deem uma olhada! #react #material</p>
                 </StylePostDescription>
-                <StylePostLink>
+                <StylePostLink >
+                    <a href={url}>
                     <StylePostLinkText>
                         <h1>{title}</h1>
                         <p>{descripition}</p>
-                        <a href={url}>{url}</a>
+                        <p >{url}</p>
                     </StylePostLinkText>
-                    <StylePostLinkImg src="https://blog.fellyph.com.br/wp-content/uploads/2016/06/react-js.png" />
+                    <StylePostLinkImg src={image} />
+                    </a>
                 </StylePostLink>
             </div>
 
