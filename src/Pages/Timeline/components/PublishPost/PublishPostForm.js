@@ -18,7 +18,7 @@ export default function PublishPostForm() {
     }
 
     try {
-      await axios.post(`${BASE_URL}/publish-post`, body,
+      await axios.post(`//localhost:4000/publish-post`, body,
         {
           headers: {
             Authorization: `Bearer ${token}`

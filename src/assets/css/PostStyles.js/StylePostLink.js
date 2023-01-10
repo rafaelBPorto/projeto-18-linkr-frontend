@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StylePostLink = styled.div`
+export const StylePostLink = styled.a`
     box-sizing: border-box;
     width: 503px;
     display:flex;
@@ -10,6 +10,8 @@ export const StylePostLink = styled.div`
     border-radius: 11px;
 
     overflow:hidden;
+    text-decoration: none;
+
     /* flex-wrap:wrap; */
 
     h1{
@@ -20,7 +22,7 @@ export const StylePostLink = styled.div`
 
     }
 
-    p{
+    h2{
         font-size: 11px;
         color: #9B9595;
         line-height: 13px;
@@ -28,8 +30,7 @@ export const StylePostLink = styled.div`
 
     }
 
-    a{
-        text-decoration: none;
+    p{
         font-size: 11px;
         line-height: 13px;
         color: #CECECE;
@@ -45,13 +46,13 @@ export const StylePostLink = styled.div`
             max-width:90%
             
         }
-        p{
+        h2{
             font-size: 9px;
             margin-bottom: 3px;
             line-height: 11px;
 
         }
-        a{
+        p{
             font-size: 11px;
             margin-bottom: 3px;
             line-height: 11px;            
@@ -70,7 +71,8 @@ export const StylePostLinkText = styled.div`
 
 export const StylePostLinkImg = styled.img`
     width: 30%;
-    object-fit: cover;
+    /* object-fit: cover; */
+    background: #ffffff;
     border-radius: 0 11px 11px 0;
 
     @media (max-width: 811px) {
