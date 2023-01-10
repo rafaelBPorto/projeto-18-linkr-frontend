@@ -46,13 +46,14 @@ export default function TimeLine() {
                     <p>carregando...</p>
                 ) : (
                     <>
-                    {posts.map((i, idx) => <Post 
-                    key = {idx}
-                    description = {i.linkDescription}
-                    url = {i.linkUrl}
-                    title = {i.linkTitle}
-                    image = {i.linkImage}
-                    />)}
+                        {posts.map((post) => <Post
+                            key={post.id}
+                            postDescription={post.description}
+                            link_description={post.link_description}
+                            link_url={post.link_url}
+                            link_title={post.link_title}
+                            link_image={post.link_image}
+                        />)}
                     </>
                 )}
             </StylePage>
