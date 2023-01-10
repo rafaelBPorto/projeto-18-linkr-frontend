@@ -8,7 +8,7 @@ import trahsIcon from "../../../../assets/imgs/trahsIcon.svg"
 import userImg from "../../../../assets/imgs/userImg.svg"
 import heartOutline from "../../../../assets/imgs/heartOutline.svg"
 
-export default function Post({title, descripition, url, image}) {
+export default function Post({postDescription, link_title, link_descripition, link_url, link_image}) {
     return (
         <StylePost>
 
@@ -20,17 +20,16 @@ export default function Post({title, descripition, url, image}) {
             <div>
                 <StylePostDescription>
                     <h1>Juvenal Juvêncio <img src={trahsIcon} alt="trash" onClick={() => alert("Exlcuir")} /></h1>
-                    <p>Muito maneiro esse tutorial de Material UI com React, deem uma olhada! #react #material</p>
+                    <p>{postDescription}</p>
                 </StylePostDescription>
-                <StylePostLink >
-                    <a href={url}>
+                <StylePostLink href={link_url} target="_blank" rel="noopener noreferrer">
                     <StylePostLinkText>
-                        <h1>{title}</h1>
-                        <p>{descripition}</p>
-                        <p >{url}</p>
+                        <h1>{link_title}</h1>
+                        <h2>{link_descripition}</h2>
+                        <p>{link_url}</p>
                     </StylePostLinkText>
-                    <StylePostLinkImg src={image} />
-                    </a>
+                    <StylePostLinkImg src={link_image} />
+                
                 </StylePostLink>
             </div>
 
