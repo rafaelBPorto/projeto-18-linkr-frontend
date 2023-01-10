@@ -15,7 +15,7 @@ export default function Header() {
 
   useEffect(() => {
     axios
-      .get("https://localhost:4000/search", name)
+      .get("http://localhost:4000/search", name)
       .then((res) => {
         setSearch(res.data);
         console.log(search);
@@ -57,8 +57,9 @@ export default function Header() {
         </Button>
         </SearchBar>
         <Sugestions>
-          {search.map((s) => (
-            <Sugestion>
+          {search.map((s, idx) => (
+            <Sugestion
+             key = {idx}>
               <img src={s.photo} />
               <h1>{s.name}</h1>
             </Sugestion>

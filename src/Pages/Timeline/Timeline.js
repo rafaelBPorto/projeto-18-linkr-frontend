@@ -36,7 +36,7 @@ export default function TimeLine() {
 
     return (
         <>
-            {/* <Header /> */}
+            <Header />
             <StylePage>
                 <StyleDescriptionPAge>
                     timeline
@@ -46,7 +46,9 @@ export default function TimeLine() {
                     <p>carregando...</p>
                 ) : (
                     <>
-                    {posts.map((i) => <Post description = {i.linkDescription}
+                    {posts.map((i, idx) => <Post 
+                    key = {idx}
+                    description = {i.linkDescription}
                     url = {i.linkUrl}
                     title = {i.linkTitle}
                     image = {i.linkImage}
