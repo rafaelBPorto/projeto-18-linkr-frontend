@@ -16,7 +16,7 @@ export default function TimeLine() {
 
     async function getPost() {
         try {
-            const postsPromisses = await axios.get(`//localhost:4000/timeline`, {
+            const postsPromisses = await axios.get(`${BASE_URL}/timeline`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
