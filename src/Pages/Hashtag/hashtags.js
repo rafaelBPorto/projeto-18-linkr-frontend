@@ -7,20 +7,23 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import BASE_URL from "../../constants/URL";
 
+
 export default function HashtagPage() {
   const { hashtag } = useParams();
   const [posts, setPosts] = useState([]);
   const [trends, setTrends] = useState([]);
+  const token = localStorage.getItem('token');
 
   async function getPost() {
     try {
-      const response = await axios.get(`//localhost:4000/hashtag/${hashtag}`);
-      setPosts(response.data);
-    const response1 = await axios.get(`//localhost:4000/trends`);
-      setTrends(response1.data);
-      console.log(response1.data);
+      const getPosts = await axios.get(`http://localhost:4000/hashtag/${hashtag}`, {});
+      setPosts(getPosts.data);
+      console.log(posts);
+      const getTrends = await axios.get(`http://localhost:4000/trends`, {});
+      setTrends(getTrends.data);
+    
     } catch (err) {
-      alert(err.response.data);
+       console.log(err.response?.data);
     }
   }
 
@@ -37,6 +40,7 @@ export default function HashtagPage() {
           {posts.map((i, idx) => (
             <Post
               key={idx}
+              id={i.id}
               name={i.name}
               photo={i.photo}
               description={i.description}
@@ -62,19 +66,34 @@ export default function HashtagPage() {
   );
 }
 
-export function Post({ description, url, photo, name }) {
+export function Post({id, description, url, photo, name }) {
+
   const navigate = useNavigate();
   const tagStyle = {
     fontWeight: 700,
     cursor: "pointer",
   };
 
+  const [liked, setLiked] = useState(false);
+
+  function handleLike () {
+    if (liked) {
+      setLiked(false);
+    } else if (!liked) {
+      setLiked(true);
+    }
+    
+  }
+
   return (
     <PostContainer>
       <UserLeftSide>
         <img src={photo} />
-        <AiOutlineHeart color={"red"} />
-        <AiFillHeart color={"red"} />
+        {liked ?
+        <AiFillHeart onClick={() => handleLike()} color={"red"} />
+         :
+         <AiOutlineHeart onClick={() => handleLike()} color={"red"} />
+         }
       </UserLeftSide>
       <PostInfoRightSide>
         <p>{name}</p>

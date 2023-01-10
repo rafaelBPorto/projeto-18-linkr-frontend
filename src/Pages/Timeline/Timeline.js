@@ -10,6 +10,7 @@ import PublishPost from "./components/PublishPost/PublishPost";
 export default function TimeLine() {
 
     const token = localStorage.getItem("token")
+    console.log(token);
 
     const [posts, setPosts] = useState();
     const [update, setUpdate] = useState(false);
@@ -23,6 +24,7 @@ export default function TimeLine() {
             });
             setPosts(postsPromisses.data);
             setUpdate(true);
+            console.log(postsPromisses.data)
         } catch (error) {
             console.log(error.response.data);
         }
@@ -34,7 +36,7 @@ export default function TimeLine() {
 
     return (
         <>
-            {/* <Header /> */}
+            <Header />
             <StylePage>
                 <StyleDescriptionPAge>
                     timeline
@@ -44,13 +46,12 @@ export default function TimeLine() {
                     <p>carregando...</p>
                 ) : (
                     <>
-                    {posts.map((post) => <Post 
-                    key={post.id}
-                    postDescription = {post.description}
-                    link_description = {post.link_description}
-                    link_url = {post.link_url}
-                    link_title = {post.link_title}
-                    link_image = {post.link_image}
+                    {posts.map((i, idx) => <Post 
+                    key = {idx}
+                    description = {i.linkDescription}
+                    url = {i.linkUrl}
+                    title = {i.linkTitle}
+                    image = {i.linkImage}
                     />)}
                     </>
                 )}
