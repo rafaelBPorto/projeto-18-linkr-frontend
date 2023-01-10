@@ -25,7 +25,7 @@ export default function Post({postDescription, link_title, link_descripition, li
                 <StylePostLink href={link_url} target="_blank" rel="noopener noreferrer">
                     <StylePostLinkText>
                         <h1>{link_title}</h1>
-                        <p>{link_descripition}</p>
+                        <h2>{link_descripition}</h2>
                         <p>{link_url}</p>
                     </StylePostLinkText>
                     <StylePostLinkImg src={link_image} />

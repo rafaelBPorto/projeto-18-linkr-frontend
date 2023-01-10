@@ -22,7 +22,7 @@ export const StylePostLink = styled.a`
 
     }
 
-    p{
+    h2{
         font-size: 11px;
         color: #9B9595;
         line-height: 13px;
@@ -30,8 +30,7 @@ export const StylePostLink = styled.a`
 
     }
 
-    a{
-        text-decoration: none;
+    p{
         font-size: 11px;
         line-height: 13px;
         color: #CECECE;
@@ -47,13 +46,13 @@ export const StylePostLink = styled.a`
             max-width:90%
             
         }
-        p{
+        h2{
             font-size: 9px;
             margin-bottom: 3px;
             line-height: 11px;
 
         }
-        a{
+        p{
             font-size: 11px;
             margin-bottom: 3px;
             line-height: 11px;            
