@@ -15,17 +15,20 @@ export default function HashtagPage() {
   const token = localStorage.getItem('token');
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
+  
   async function getPost() {
     try {
       const getPosts = await axios.get(`${BASE_URL}/hashtag/${hashtag}`, {});
       setPosts(getPosts.data);
       const getTrends = await axios.get(`${BASE_URL}/trends`, {});
       setTrends(getTrends.data);
-    
+      
     } catch (err) {
        console.log(err.response?.data);
     }
   }
+
+
 
   useEffect(() => {
     getPost();
@@ -39,15 +42,15 @@ export default function HashtagPage() {
           <h1># {hashtag}</h1>
           {posts.map((i, idx) => (
             <Post
-            token = {token}
-            user_id={userInfo.id}
+              token = {token}
+              user_id={userInfo.id}
               key={idx}
               post_id={i.id}
               name={i.name}
               photo={i.photo}
               description={i.description}
               url={i.url}
-              likes = {i.likedBy}
+              likes = {i.likedById}
             />
           ))}
         </PostsContainer>
@@ -70,17 +73,19 @@ export default function HashtagPage() {
 }
 
 export function Post({token, likes, user_id, post_id, description, url, photo, name }) {
-  console.log(token);
   const navigate = useNavigate();
   const tagStyle = {
     fontWeight: 700,
     cursor: "pointer",
   };
 
+
   const body = {post_id: post_id}
 
+  console.log(typeof likes);
+
   useEffect(() => {
-    likes.map((i) => (i === user_id) ? setLiked(true) : "")
+      likes.map((i) => (i === user_id) ? setLiked(true) : "")
   }, [])
 
   const [liked, setLiked] = useState(false);
@@ -96,7 +101,7 @@ export function Post({token, likes, user_id, post_id, description, url, photo, n
           }
         });
 
-        console.log(deslikeResponse.data);
+
         setLiked(false);
       } else if (!liked) {
         const likeResponse =  await axios.post(`${BASE_URL}/likes`, body,
@@ -106,7 +111,6 @@ export function Post({token, likes, user_id, post_id, description, url, photo, n
           }
         });
 
-        console.log(likeResponse.data);
         setLiked(true);
       }
     } catch (err) {
@@ -148,9 +152,8 @@ export function Trends({trend}) {
     fontWeight: 700,
     cursor: "pointer",
   };
+
   return (
-    
-    <p>
       <ReactTagify
           tagStyle={tagStyle}
           tagClicked={(tag) => {
@@ -160,9 +163,6 @@ export function Trends({trend}) {
         >
           <p>{trend}</p>
         </ReactTagify>
-     
-    </p>
-     
   );
 }
 

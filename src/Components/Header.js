@@ -10,11 +10,12 @@ import BASE_URL from "../constants/URL";
 export default function Header() {
   const [arrowClicked, setArrowClicked] = useState(false);
   const navigate = useNavigate();
-
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const [name, setName] = useState("");
   const [search, setSearch] = useState([]);
   const [sugestões,setSugestões] = useState([])
   
+  console.log(userInfo);
 
   // useEffect(() => {
   //   axios
