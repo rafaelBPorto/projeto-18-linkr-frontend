@@ -36,7 +36,7 @@ export default function TimeLine() {
 
     return (
         <>
-            {/* <Header /> */}
+            <Header /> 
             <StylePage>
                 <StyleDescriptionPAge>
                     timeline
