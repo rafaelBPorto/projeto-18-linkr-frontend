@@ -10,6 +10,9 @@ import PublishPost from "./components/PublishPost/PublishPost";
 export default function TimeLine() {
 
     const token = localStorage.getItem("token")
+    const user = JSON.parse(localStorage.getItem("userInfo"))
+
+    console.log(user)
 
     const [posts, setPosts] = useState();
     const [update, setUpdate] = useState(false);
@@ -29,8 +32,10 @@ export default function TimeLine() {
     }
 
     useEffect(() => {
-        getPost()
-    }, [update])
+        if(!update){
+            getPost()
+        }
+    }, [getPost, update])
 
     return (
         <>
@@ -39,7 +44,7 @@ export default function TimeLine() {
                 <StyleDescriptionPAge>
                     timeline
                 </StyleDescriptionPAge>
-                <PublishPost />
+                <PublishPost user={user}/>
                 {(posts === null || posts === undefined) ? (
                     <p>carregando...</p>
                 ) : (
@@ -51,6 +56,8 @@ export default function TimeLine() {
                             link_url={post.link_url}
                             link_title={post.link_title}
                             link_image={post.link_image}
+                            user={user}
+
                         />)}
                     </>
                 )}
