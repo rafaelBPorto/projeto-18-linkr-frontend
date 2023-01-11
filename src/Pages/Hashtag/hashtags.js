@@ -8,6 +8,7 @@ import axios from "axios";
 import BASE_URL from "../../constants/URL";
 import { StylePostDescription } from "../../assets/css/PostStyles.js/StylePostDescription.js";
 import { StylePostLink, StylePostLinkImg, StylePostLinkText } from "../../assets/css/PostStyles.js/StylePostLink.js";
+import { StylePost } from "../../assets/css/PostStyles.js/StylePost.js";
 
 
 export default function HashtagPage() {
@@ -123,7 +124,7 @@ export function Post({token, likes, user_id, post_id, description, url, photo, n
   }
 
   return (
-    <PostContainer>
+    <StylePost>
       <UserLeftSide>
         <img src={photo} />
         {liked ?
@@ -148,7 +149,7 @@ export function Post({token, likes, user_id, post_id, description, url, photo, n
         
         
       </div>
-    </PostContainer>
+    </StylePost>
   );
 }
 
