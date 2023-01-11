@@ -29,20 +29,16 @@ export default function Header() {
   // }, [name]);
 
   useEffect(() => {
-    const url = `${BASE_URL}/search`;
-    const promisse = axios.get(url);
-    promisse.then((res) => {
-      console.log("teste",res.data);
-      setSearch(res.data); 
-      setSugestões(search.filter(search.name = name))
-    });
-    promisse.catch((err) => {
-      console.log(err.response.data);
-    });
-  }, []);
-
-
-   
+    axios
+      .get("https://localhost:4000/search", name)
+      .then((res) => {
+        setSearch(res.data);
+        console.log(search);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [name]);
 
   function handleArrowClick() {
     if (arrowClicked) {
@@ -76,7 +72,7 @@ export default function Header() {
         </Button>
         </SearchBar>
         <Sugestions>
-          {sugestões.map((s) => (
+          {search.map((s) => (
             <Sugestion>
               <img src={s.photo} />
               <h1>{s.name}</h1>
