@@ -5,6 +5,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input"; 
 import axios from "axios";
+import BASE_URL from "../constants/URL";
 
 export default function Header() {
   const [arrowClicked, setArrowClicked] = useState(false);
@@ -12,18 +13,35 @@ export default function Header() {
 
   const [name, setName] = useState("");
   const [search, setSearch] = useState([]);
+  const [sugestões,setSugestões] = useState([])
+  
+
+  // useEffect(() => {
+  //   axios
+  //     .post("http://localhost:4000/search", {name:name})
+  //     .then((res) => {
+  //       setSearch(res.data);
+  //       console.log("teste1",search);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [name]);
 
   useEffect(() => {
-    axios
-      .get("https://localhost:4000/search", name)
-      .then((res) => {
-        setSearch(res.data);
-        console.log(search);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [name]);
+    const url = `${BASE_URL}/search`
+    const promisse = axios.get(url)
+    promisse.then((res)=>{
+      console.log("teste",res.data);
+      setSearch(res.data)
+      setSugestões(search.filter(search.name = name))
+    });
+    promisse.catch((err) =>{
+      console.log(err.response.data);
+    })
+},{})
+  
+
 
   function handleArrowClick() {
     if (arrowClicked) {

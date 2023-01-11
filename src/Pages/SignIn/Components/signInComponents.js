@@ -44,8 +44,9 @@ export function LoginForm() {
 
     try {
       const response = await axios.post(`${BASE_URL}`, login);
-      setUserToken(response.data);
-      localStorage.setItem("token", response.data);
+      setUserToken(response.data.token);
+      localStorage.setItem("token", (response.data.token));
+      localStorage.setItem('userInfo', JSON.stringify(response.data))
       navigate("/timeline");
     } catch (err) {
       setDisabled(false);
