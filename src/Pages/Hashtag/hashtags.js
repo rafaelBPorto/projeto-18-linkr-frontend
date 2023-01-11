@@ -6,6 +6,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BASE_URL from "../../constants/URL";
+import { StylePostDescription } from "../../assets/css/PostStyles.js/StylePostDescription.js";
+import { StylePostLink, StylePostLinkImg, StylePostLinkText } from "../../assets/css/PostStyles.js/StylePostLink.js";
 
 
 export default function HashtagPage() {
@@ -130,9 +132,10 @@ export function Post({token, likes, user_id, post_id, description, url, photo, n
          <AiOutlineHeart onClick={() => handleLike()} color={"red"} />
          }
       </UserLeftSide>
-      <PostInfoRightSide>
-        <p>{name}</p>
-        <ReactTagify
+      <div>
+        <StylePostDescription>
+          <h1>{name}</h1>
+          <ReactTagify
           tagStyle={tagStyle}
           tagClicked={(tag) => {
             const newTag = tag.replace("#", "");
@@ -141,7 +144,10 @@ export function Post({token, likes, user_id, post_id, description, url, photo, n
         >
           <p>{description}</p>
         </ReactTagify>
-      </PostInfoRightSide>
+        </StylePostDescription>
+        
+        
+      </div>
     </PostContainer>
   );
 }
@@ -205,6 +211,7 @@ const UserLeftSide = styled.div`
   border-radius: 16px;
   img {
     margin-top: 40px;
+    margin-bottom: 20px;
     border-radius: 50%;
     width: 53px;
     height: 53px;
