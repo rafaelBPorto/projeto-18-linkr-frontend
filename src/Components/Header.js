@@ -29,16 +29,19 @@ export default function Header() {
   // }, [name]);
 
   useEffect(() => {
-    axios
-      .get("https://localhost:4000/search", name)
-      .then((res) => {
-        setSearch(res.data);
-        console.log(search);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [name]);
+    const url = `${BASE_URL}/search`
+    const promisse = axios.get(url)
+    promisse.then((res)=>{
+      console.log("teste",res.data);
+      setSearch(res.data)
+      setSugestões(search.filter(search.name = name))
+    });
+    promisse.catch((err) =>{
+      console.log(err.response.data);
+    })
+},{})
+  
+
 
   function handleArrowClick() {
     if (arrowClicked) {
