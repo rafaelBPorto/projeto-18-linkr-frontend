@@ -13,19 +13,22 @@ export default function HashtagPage() {
   const [posts, setPosts] = useState([]);
   const [trends, setTrends] = useState([]);
   const token = localStorage.getItem('token');
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
+  
   async function getPost() {
     try {
-      const getPosts = await axios.get(`http://localhost:4000/hashtag/${hashtag}`, {});
+      const getPosts = await axios.get(`${BASE_URL}/hashtag/${hashtag}`, {});
       setPosts(getPosts.data);
-      console.log(posts);
-      const getTrends = await axios.get(`http://localhost:4000/trends`, {});
+      const getTrends = await axios.get(`${BASE_URL}/trends`, {});
       setTrends(getTrends.data);
-    
+      
     } catch (err) {
        console.log(err.response?.data);
     }
   }
+
+
 
   useEffect(() => {
     getPost();
@@ -39,12 +42,15 @@ export default function HashtagPage() {
           <h1># {hashtag}</h1>
           {posts.map((i, idx) => (
             <Post
+              token = {token}
+              user_id={userInfo.id}
               key={idx}
-              id={i.id}
+              post_id={i.id}
               name={i.name}
               photo={i.photo}
               description={i.description}
               url={i.url}
+              likes = {i.likedById}
             />
           ))}
         </PostsContainer>
@@ -66,22 +72,51 @@ export default function HashtagPage() {
   );
 }
 
-export function Post({id, description, url, photo, name }) {
-
+export function Post({token, likes, user_id, post_id, description, url, photo, name }) {
   const navigate = useNavigate();
   const tagStyle = {
     fontWeight: 700,
     cursor: "pointer",
   };
 
+
+  const body = {post_id: post_id}
+
+  console.log(typeof likes);
+
+  useEffect(() => {
+      likes.map((i) => (i === user_id) ? setLiked(true) : "")
+  }, [])
+
   const [liked, setLiked] = useState(false);
 
-  function handleLike () {
-    if (liked) {
-      setLiked(false);
-    } else if (!liked) {
-      setLiked(true);
+  async function handleLike () {
+    try {
+      if (liked) {
+        const deslikeResponse =  await axios.delete(`${BASE_URL}/likes`,
+        {
+            headers: {
+            Authorization: `${token}`,
+            post_id: post_id
+          }
+        });
+
+
+        setLiked(false);
+      } else if (!liked) {
+        const likeResponse =  await axios.post(`${BASE_URL}/likes`, body,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        setLiked(true);
+      }
+    } catch (err) {
+      console.log(err.response.data);
     }
+    
     
   }
 
@@ -117,9 +152,8 @@ export function Trends({trend}) {
     fontWeight: 700,
     cursor: "pointer",
   };
+
   return (
-    
-    <p>
       <ReactTagify
           tagStyle={tagStyle}
           tagClicked={(tag) => {
@@ -129,9 +163,6 @@ export function Trends({trend}) {
         >
           <p>{trend}</p>
         </ReactTagify>
-     
-    </p>
-     
   );
 }
 
