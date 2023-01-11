@@ -4,12 +4,12 @@ import { StylePublishPostLeft } from "../../../../assets/css/PublishPostStyles/S
 import { StyleUserImg } from "../../../../assets/css/StyleUserImg"
 import userImg from "../../../../assets/imgs/userImg.svg"
 import PublishPostForm from "./PublishPostForm"
-export default function PublishPost(){
+export default function PublishPost({user}){
 
     return(
         <StylePublishPost>
             <StylePublishPostLeft>
-                <StyleUserImg  src={userImg}/>
+                <StyleUserImg  src={user.photo}/>
             </StylePublishPostLeft>
             
             <PublishPostForm />

@@ -8,18 +8,23 @@ import trahsIcon from "../../../../assets/imgs/trahsIcon.svg"
 import userImg from "../../../../assets/imgs/userImg.svg"
 import heartOutline from "../../../../assets/imgs/heartOutline.svg"
 
-export default function Post({postDescription, link_title, link_descripition, link_url, link_image}) {
+
+export default function Post({ postDescription, link_title, link_descripition, link_url, link_image, user }) {
+    console.log(user.name)
     return (
         <StylePost>
 
             <StylePostLeft>
-                <StyleUserImg src={userImg} />
-                <StylePostIcon src={heartOutline}/>
+                <StyleUserImg src={user.photo} />
+                <StylePostIcon src={heartOutline} />
             </StylePostLeft>
 
             <div>
                 <StylePostDescription>
-                    <h1>Juvenal Juvêncio <img src={trahsIcon} alt="trash" onClick={() => alert("Exlcuir")} /></h1>
+                    <h1>
+                        {user.name}
+                        <img src={trahsIcon} alt="trash" onClick={() => alert("Exlcuir")} />
+                    </h1>
                     <p>{postDescription}</p>
                 </StylePostDescription>
                 <StylePostLink href={link_url} target="_blank" rel="noopener noreferrer">
@@ -29,7 +34,7 @@ export default function Post({postDescription, link_title, link_descripition, li
                         <p>{link_url}</p>
                     </StylePostLinkText>
                     <StylePostLinkImg src={link_image} />
-                
+
                 </StylePostLink>
             </div>
 
