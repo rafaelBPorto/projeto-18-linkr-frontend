@@ -38,7 +38,7 @@ export default function HashtagPage() {
 
   return (
     <PageContainer>
-      {/* <Header /> */}
+      <Header /> 
       <StylePage>
         <StyleDescriptionPAge>
         # {hashtag}
