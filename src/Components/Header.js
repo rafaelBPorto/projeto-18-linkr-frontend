@@ -9,12 +9,13 @@ import BASE_URL from "../constants/URL";
 
 export default function Header() {
   const [arrowClicked, setArrowClicked] = useState(false);
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [searchUsers, setSearchUsers] = useState([]);
 
-
+console.log(userInfo);
  
     
    
@@ -99,7 +100,7 @@ export default function Header() {
             size="30px"
           ></RiArrowDownSLine>
         )}
-        <img  onClick={handleArrowClick} src="https://static-cse.canva.com/blob/759727/ComoTirareEditarSuaFotoparaPerfilemRedesSociaisfeaturedimagee1559023010630.jpg"></img>
+        <img  onClick={handleArrowClick} src={userInfo.photo}></img>
         <Logout onClick={handleLogout} display={(arrowClicked ? `initial` : `none`)}>Logout</Logout>
       </div>
     </Navbar>
