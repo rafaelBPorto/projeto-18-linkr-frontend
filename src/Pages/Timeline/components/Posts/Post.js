@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StylePost } from "../../../../assets/css/PostStyles.js/StylePost";
 import { StylePostDescription } from "../../../../assets/css/PostStyles.js/StylePostDescription";
 import {
@@ -13,9 +13,9 @@ import {
 import { StyleUserImg } from "../../../../assets/css/StyleUserImg";
 import trahsIcon from "../../../../assets/imgs/trahsIcon.svg";
 import heartOutline from "../../../../assets/imgs/heartOutline.svg";
+import heartRed from "../../../../assets/imgs/heartRed.svg";
 import axios from "axios";
 import BASE_URL from "../../../../constants/URL";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { ReactTagify } from "react-tagify";
 import { tagStyle } from "../../../../Components/styleTagify";
@@ -25,24 +25,62 @@ export default function Post({ post, setUpdate, token, user }) {
     id,
     user_id,
     description,
-    user_name,
-    user_photo,
+    name,
+    photo,
     link_title,
     link_descripition,
     link_url,
     link_image,
+    likedById
   } = post;
   const userId = user.id;
-
+  const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    likedById.map((i) => (i === userId) ? setLiked(true) : "")
+}, [])
  
-  const authorization = {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  };
+async function handleLike () {
+    const body = {post_id: id}
+
+    try {
+      if (liked) {
+       await axios.delete(`${BASE_URL}/likes`,
+        {
+            headers: {
+            Authorization: `${token}`,
+            post_id: id
+          }
+        });
+
+
+        setLiked(false);
+      } else if (!liked) {
+        await axios.post(`${BASE_URL}/likes`, body,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        setLiked(true);
+      }
+    } catch (err) {
+      console.log(err.response.data);
+    } 
+  }
+
+  
 
   async function deletePost(postId) {
+    const authorization = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      
     try {
       await axios.delete(`${BASE_URL}/delete-post/${postId}`, authorization);
     } catch (error) {
@@ -55,15 +93,18 @@ export default function Post({ post, setUpdate, token, user }) {
   return (
     <StylePost>
       <StylePostLeft>
-        <StyleUserImg src={user_photo} />
+        <StyleUserImg src={photo} />
 
-        <StylePostIcon src={heartOutline} />
+        {liked ?
+        <StylePostIcon onClick={() => handleLike()} src={heartRed} />:
+        <StylePostIcon onClick={() => handleLike()} src={heartOutline} />}
+       
       </StylePostLeft>
 
       <div>
         <StylePostDescription>
           <h1>
-            {user_name}
+            {name}
             {userId === user_id && (
               <img src={trahsIcon} alt="trash" onClick={() => deletePost(id)} />
             )}
