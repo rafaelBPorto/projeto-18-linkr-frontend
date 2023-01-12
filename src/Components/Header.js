@@ -10,40 +10,41 @@ import BASE_URL from "../constants/URL";
 export default function Header() {
   const [arrowClicked, setArrowClicked] = useState(false);
   const navigate = useNavigate();
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const [name, setName] = useState("");
-  const [search, setSearch] = useState([]);
-  const [sugestões,setSugestões] = useState([])
-  
-  console.log(userInfo);
+  const [users, setUsers] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [searchUsers, setSearchUsers] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .post("http://localhost:4000/search", {name:name})
-  //     .then((res) => {
-  //       setSearch(res.data);
-  //       console.log("teste1",search);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [name]);
+
+ 
+    
+   
+      useEffect(() => {
+        if (searchInput.length < 3) {
+          setSearchUsers([]);
+        }
+        if (searchInput.length >= 3) {
+        setSearchUsers( users.filter((i) => i.name.includes(searchInput)));
+      }
+      }, [searchInput])
+     
+    console.log(searchUsers);
+  
+
+
+  async function getUsers () {
+    try {
+      const getUsers = await axios.get(`${BASE_URL}/search`);
+      setUsers(getUsers.data);
+    } catch (err) {
+       console.log(err);
+    }
+  }
 
   useEffect(() => {
-    const url = `${BASE_URL}/search`
-    const promisse = axios.get(url)
-    promisse.then((res)=>{
-      console.log("teste",res.data);
-      setSearch(res.data)
-      setSugestões(search.filter(search.name = name))
-    });
-    promisse.catch((err) =>{
-      console.log(err.response.data);
-    })
-},{})
+    getUsers();
+  }, []);
+
   
-
-
   function handleArrowClick() {
     if (arrowClicked) {
       setArrowClicked(false);
@@ -67,9 +68,9 @@ export default function Header() {
           minLength={3}
           debounceTimeout={300}
           type="search"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
           required
-          onChange={(e) => setName(e.target.value)}
-          value={name}
           placeholder="Search for people"
         />
         <Button>
@@ -77,7 +78,7 @@ export default function Header() {
         </Button>
         </SearchBar>
         <Sugestions>
-          {search.map((s) => (
+          {searchUsers.map((s) => (
             <Sugestion>
               <img src={s.photo} />
               <h1>{s.name}</h1>
@@ -156,14 +157,10 @@ const Logout = styled.div`
 
 
 const Search = styled.div`
-  display: flex;
+  width: 563px;
+  align-self: center;
   flex-direction:column;
-  input {
-    width: 563px;
-    height: 45px;
-    background: #ffffff;
-    border-radius: 8px;
-  }
+  height: 45px;
 `;
 const Button = styled.button`
   position: relative;
@@ -174,21 +171,33 @@ const Button = styled.button`
   border: 0px;
 `;
 
-const Sugestion = styled.div`
-  width: 563px;
-  height: 176px;
-  background: #e7e7e7;
-  border-radius: 8px;
-`;
-
-const Sugestions = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-`;
-
 const SearchBar = styled.div`
+  position: absolute;
   background-color: #151515;
   display: flex;
   align-items: center;
+  input {
+    width: 563px;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 8px;
+  }
 `
+
+
+
+const Sugestion = styled.div`
+  width: 563px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background: #e7e7e7;
+`;
+
+const Sugestions = styled.div`
+  display: flex;
+  position: absolute;
+  margin-top: 47px;
+  flex-direction: column;
+  border-radius: 50px;
+`;
