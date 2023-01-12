@@ -9,21 +9,24 @@ import userImg from "../../../../assets/imgs/userImg.svg"
 import heartOutline from "../../../../assets/imgs/heartOutline.svg"
 
 
-export default function Post({ postDescription, link_title, link_descripition, link_url, link_image, userName, userPhoto }) {
+export default function Post({ postUserId, postDescription, link_title, link_descripition, link_url, link_image, postUserName, postUserPhoto, user }) {
+    const { id } = user
 
     return (
         <StylePost>
 
             <StylePostLeft>
-                <StyleUserImg src={userPhoto} />
+                <StyleUserImg src={postUserPhoto} />
                 <StylePostIcon src={heartOutline} />
             </StylePostLeft>
 
             <div>
                 <StylePostDescription>
                     <h1>
-                        {userName}
-                        <img src={trahsIcon} alt="trash" onClick={() => alert("Exlcuir")} />
+                        {postUserName}
+                        {id === postUserId && (
+                            <img src={trahsIcon} alt="trash" onClick={() => alert("Exlcuir")} />
+                        )}
                     </h1>
                     <p>{postDescription}</p>
                 </StylePostDescription>
