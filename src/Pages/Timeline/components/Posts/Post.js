@@ -5,12 +5,36 @@ import { StylePostIcon, StylePostLeft } from "../../../../assets/css/PostStyles.
 import { StylePostLink, StylePostLinkImg, StylePostLinkText } from "../../../../assets/css/PostStyles.js/StylePostLink";
 import { StyleUserImg } from "../../../../assets/css/StyleUserImg";
 import trahsIcon from "../../../../assets/imgs/trahsIcon.svg"
-import userImg from "../../../../assets/imgs/userImg.svg"
 import heartOutline from "../../../../assets/imgs/heartOutline.svg"
+import axios from "axios";
+import BASE_URL from "../../../../constants/URL";
 
 
-export default function Post({ postUserId, postDescription, link_title, link_descripition, link_url, link_image, postUserName, postUserPhoto, user }) {
+export default function Post({ postId, postUserId, postDescription, link_title, link_descripition, link_url, link_image, postUserName, postUserPhoto, user, token, setUpdate }) {
     const { id } = user
+    console.log(token)
+
+    const authorization = {
+        headers: {
+            authorization: `Bearer ${token}`,
+        }
+    };
+
+
+    async function deletePost(postId) {
+        console.log(authorization)
+        try {
+            await axios.delete(`${BASE_URL}/delete-post/${postId}`,
+                authorization
+            );
+            
+        } catch (error) {
+            alert("Não foi possível excluir o post!")
+        }
+        
+        setUpdate(true)
+
+    }
 
     return (
         <StylePost>
@@ -25,7 +49,7 @@ export default function Post({ postUserId, postDescription, link_title, link_des
                     <h1>
                         {postUserName}
                         {id === postUserId && (
-                            <img src={trahsIcon} alt="trash" onClick={() => alert("Exlcuir")} />
+                            <img src={trahsIcon} alt="trash" onClick={() => deletePost(postId)} />
                         )}
                     </h1>
                     <p>{postDescription}</p>

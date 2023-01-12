@@ -30,10 +30,8 @@ export default function TimeLine() {
     }
 
     useEffect(() => {
-        if(!update){
             getPost()
-        }
-    }, [getPost, update])
+    }, [update])
 
     return (
         <>
@@ -49,6 +47,7 @@ export default function TimeLine() {
                     <>
                         {posts.map((post) => <Post
                             key={post.id}
+                            postId={post.id}
                             postUserId={post.user_id}
                             postDescription={post.description}
                             link_description={post.link_description}
@@ -58,7 +57,8 @@ export default function TimeLine() {
                             postUserName={post.user_name}
                             postUserPhoto={post.user_photo}
                             user={user}
-
+                            token={token}
+                            setUpdate={setUpdate}
                         />)}
                     </>
                 )}
