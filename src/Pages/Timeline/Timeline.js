@@ -12,8 +12,6 @@ export default function TimeLine() {
     const token = localStorage.getItem("token")
     const user = JSON.parse(localStorage.getItem("userInfo"))
 
-    console.log(user)
-
     const [posts, setPosts] = useState();
     const [update, setUpdate] = useState(false);
 
