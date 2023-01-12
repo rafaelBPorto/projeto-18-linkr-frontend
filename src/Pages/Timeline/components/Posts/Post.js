@@ -10,7 +10,7 @@ import heartOutline from "../../../../assets/imgs/heartOutline.svg"
 
 
 export default function Post({ postDescription, link_title, link_descripition, link_url, link_image, userName, userPhoto }) {
-    // console.log(user.name)
+
     return (
         <StylePost>
 
