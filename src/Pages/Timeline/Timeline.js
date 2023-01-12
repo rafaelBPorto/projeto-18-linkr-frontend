@@ -56,7 +56,8 @@ export default function TimeLine() {
                             link_url={post.link_url}
                             link_title={post.link_title}
                             link_image={post.link_image}
-                            user={user}
+                            userName={post.user_name}
+                            userPhoto={post.user_photo}
 
                         />)}
                     </>
