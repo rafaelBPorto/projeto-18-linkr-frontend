@@ -9,20 +9,20 @@ import userImg from "../../../../assets/imgs/userImg.svg"
 import heartOutline from "../../../../assets/imgs/heartOutline.svg"
 
 
-export default function Post({ postDescription, link_title, link_descripition, link_url, link_image, user }) {
-    console.log(user.name)
+export default function Post({ postDescription, link_title, link_descripition, link_url, link_image, userName, userPhoto }) {
+
     return (
         <StylePost>
 
             <StylePostLeft>
-                <StyleUserImg src={user.photo} />
+                <StyleUserImg src={userPhoto} />
                 <StylePostIcon src={heartOutline} />
             </StylePostLeft>
 
             <div>
                 <StylePostDescription>
                     <h1>
-                        {user.name}
+                        {userName}
                         <img src={trahsIcon} alt="trash" onClick={() => alert("Exlcuir")} />
                     </h1>
                     <p>{postDescription}</p>
