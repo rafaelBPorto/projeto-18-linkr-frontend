@@ -10,9 +10,13 @@ import axios from "axios";
 import BASE_URL from "../../../../constants/URL";
 
 
-export default function Post({ postId, postUserId, postDescription, link_title, link_descripition, link_url, link_image, postUserName, postUserPhoto, user, token, setUpdate }) {
-    const { id } = user
-    console.log(token)
+export default function Post( props ) {
+    console.log(props)
+    const { id, user_id, description, user_name,user_photo , link_title, link_descripition, link_url, link_image} = props.post;
+    const setUpdate = props.setUpdate;
+    const token = props.token;
+    const userId = props.user.id;
+
 
     const authorization = {
         headers: {
@@ -22,7 +26,7 @@ export default function Post({ postId, postUserId, postDescription, link_title, 
 
 
     async function deletePost(postId) {
-        console.log(authorization)
+      
         try {
             await axios.delete(`${BASE_URL}/delete-post/${postId}`,
                 authorization
@@ -40,7 +44,7 @@ export default function Post({ postId, postUserId, postDescription, link_title, 
         <StylePost>
 
             <StylePostLeft>
-                <StyleUserImg src={postUserPhoto} />
+                <StyleUserImg src={user_photo} />
 
                 <StylePostIcon src={heartOutline} />
             </StylePostLeft>
@@ -49,15 +53,15 @@ export default function Post({ postId, postUserId, postDescription, link_title, 
                 <StylePostDescription>
                     <h1>
 
-                        {postUserName}
-                        {id === postUserId && (
-                            <img src={trahsIcon} alt="trash" onClick={() => deletePost(postId)} />
+                        {user_name}
+                        {userId=== user_id && (
+                            <img src={trahsIcon} alt="trash" onClick={() => deletePost(id)} />
                         )}
 
                       
 
                     </h1>
-                    <p>{postDescription}</p>
+                    <p>{description}</p>
                 </StylePostDescription>
                 <StylePostLink href={link_url} target="_blank" rel="noopener noreferrer">
                     <StylePostLinkText>

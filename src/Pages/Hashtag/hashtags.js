@@ -9,6 +9,9 @@ import BASE_URL from "../../constants/URL";
 import { StylePostDescription } from "../../assets/css/PostStyles.js/StylePostDescription.js";
 import { StylePostLink, StylePostLinkImg, StylePostLinkText } from "../../assets/css/PostStyles.js/StylePostLink.js";
 import { StylePost } from "../../assets/css/PostStyles.js/StylePost.js";
+import { StylePostIcon, StylePostLeft } from "../../assets/css/PostStyles.js/StylePostLeft";
+import { StyleUserImg } from "../../assets/css/StyleUserImg";
+import { StylePage } from "../../assets/css/StylePage";
 
 
 export default function HashtagPage() {
@@ -40,7 +43,7 @@ export default function HashtagPage() {
   return (
     <PageContainer>
       {/* <Header /> */}
-      <PostsTrends>
+      <StylePage>
         <PostsContainer>
           <h1># {hashtag}</h1>
           {posts.map((i, idx) => (
@@ -54,11 +57,18 @@ export default function HashtagPage() {
               description={i.description}
               url={i.url}
               likes = {i.likedById}
+              link_description={i.link_description}
+              link_url={i.link_url}
+              link_title={i.link_title}
+              link_image={i.link_image}
             />
           ))}
         </PostsContainer>
        
-        <TrendsContainer>
+        
+       
+      </StylePage>
+      <TrendsContainer>
         <h1>Trending</h1>
         <hr></hr>
         <div>
@@ -69,13 +79,11 @@ export default function HashtagPage() {
         </div>
         
         </TrendsContainer>
-       
-      </PostsTrends>
     </PageContainer>
   );
 }
 
-export function Post({token, likes, user_id, post_id, description, url, photo, name }) {
+export function Post({token, likes, user_id, post_id, description, url, photo, name, link_descripition, link_title, link_url, link_image }) {
   const navigate = useNavigate();
   const tagStyle = {
     fontWeight: 700,
@@ -123,16 +131,20 @@ export function Post({token, likes, user_id, post_id, description, url, photo, n
     
   }
 
+
+
   return (
     <StylePost>
-      <UserLeftSide>
-        <img src={photo} />
+      <StylePostLeft>
+        <StyleUserImg src={photo} />
+        
         {liked ?
         <AiFillHeart onClick={() => handleLike()} color={"red"} />
          :
          <AiOutlineHeart onClick={() => handleLike()} color={"red"} />
          }
-      </UserLeftSide>
+      </StylePostLeft>
+
       <div>
         <StylePostDescription>
           <h1>{name}</h1>
@@ -146,6 +158,15 @@ export function Post({token, likes, user_id, post_id, description, url, photo, n
           <p>{description}</p>
         </ReactTagify>
         </StylePostDescription>
+        <StylePostLink href={link_url} target="_blank" rel="noopener noreferrer">
+                    <StylePostLinkText>
+                        <h1>{link_title}</h1>
+                        <h2>{link_descripition}</h2>
+                        <p>{link_url}</p>
+                    </StylePostLinkText>
+                    <StylePostLinkImg src={link_image} />
+
+                </StylePostLink>
         
         
       </div>
@@ -190,47 +211,16 @@ const PostsContainer = styled.div`
   }
 `;
 
-const PostContainer = styled.div`
-  width: 611px;
-  height: 276px;
-  background-color: #171717;
-  border-radius: 16px;
-  display: flex;
-  color: #b7b7b7;
-  font-family: "Lato";
-  margin-top: 16px;
-`;
 
-const UserLeftSide = styled.div`
-  display: flex;
-  background-color: #171717;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 90px;
-  height: 100%;
-  border-radius: 16px;
-  img {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    width: 53px;
-    height: 53px;
-  }
-`;
-
-const PostInfoRightSide = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
-  width: 100%;
-`;
 
 const PageContainer = styled.div`
   height: 100%;
   width: 100%;
   background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 `;
 
 const PostsTrends = styled.div`
@@ -247,6 +237,7 @@ const TrendsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  justify-self: flex-end;
   padding: 30px;
   align-items: flex-start;
   padding-left: 20px;

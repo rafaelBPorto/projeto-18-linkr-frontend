@@ -45,17 +45,9 @@ export default function TimeLine() {
                     <p>carregando...</p>
                 ) : (
                     <>
-                        {posts.map((post) => <Post
-                            key={post.id}
-                            postId={post.id}
-                            postUserId={post.user_id}
-                            postDescription={post.description}
-                            link_description={post.link_description}
-                            link_url={post.link_url}
-                            link_title={post.link_title}
-                            link_image={post.link_image}
-                            postUserName={post.user_name}
-                            postUserPhoto={post.user_photo}
+                        {posts.map((post, idx) => <Post
+                            key={idx}
+                            post ={post}
                             user={user}
                             token={token}
                             setUpdate={setUpdate}
