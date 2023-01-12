@@ -59,6 +59,7 @@ export default function TimeLine() {
                             user={user}
                             token={token}
                             setUpdate={setUpdate}
+
                         />)}
                     </>
                 )}

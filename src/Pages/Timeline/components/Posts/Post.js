@@ -41,16 +41,21 @@ export default function Post({ postId, postUserId, postDescription, link_title, 
 
             <StylePostLeft>
                 <StyleUserImg src={postUserPhoto} />
+
                 <StylePostIcon src={heartOutline} />
             </StylePostLeft>
 
             <div>
                 <StylePostDescription>
                     <h1>
+
                         {postUserName}
                         {id === postUserId && (
                             <img src={trahsIcon} alt="trash" onClick={() => deletePost(postId)} />
                         )}
+
+                      
+
                     </h1>
                     <p>{postDescription}</p>
                 </StylePostDescription>
