@@ -10,12 +10,10 @@ import axios from "axios";
 import BASE_URL from "../../../../constants/URL";
 
 
-export default function Post( props ) {
-    console.log(props)
-    const { id, user_id, description, user_name,user_photo , link_title, link_descripition, link_url, link_image} = props.post;
-    const setUpdate = props.setUpdate;
-    const token = props.token;
-    const userId = props.user.id;
+export default function Post( {post, setUpdate, token, user} ) {
+
+    const { id, user_id, description, user_name,user_photo , link_title, link_descripition, link_url, link_image} = post;
+    const userId = user.id;
 
 
     const authorization = {
