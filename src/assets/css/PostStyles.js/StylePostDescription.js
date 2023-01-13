@@ -19,11 +19,15 @@ export const StylePostDescription = styled.div`
 
         img{
             transition: all 0.5s;
+            margin-right: 15px;
         }
         
         img:hover{
-            transform: scale(1.5);
+            transform: scale(1.2);
+           
             cursor: pointer;
+            overflow: visible;
+            z-index: 3;
         }
     }
 

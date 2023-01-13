@@ -4,7 +4,7 @@ import { StylePublishPostLeft } from "../../../../assets/css/PublishPostStyles/S
 import { StyleUserImg } from "../../../../assets/css/StyleUserImg"
 import userImg from "../../../../assets/imgs/userImg.svg"
 import PublishPostForm from "./PublishPostForm"
-export default function PublishPost({user}){
+export default function PublishPost({setUpdate, user}){
 
     return(
         <StylePublishPost>
@@ -12,7 +12,7 @@ export default function PublishPost({user}){
                 <StyleUserImg  src={user.photo}/>
             </StylePublishPostLeft>
             
-            <PublishPostForm />
+            <PublishPostForm setUpdate ={setUpdate}/>
         </StylePublishPost>
     )
 }

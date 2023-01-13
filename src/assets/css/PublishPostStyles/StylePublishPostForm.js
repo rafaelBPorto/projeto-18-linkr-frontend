@@ -46,7 +46,7 @@ export const StylePublishPostForm = styled.form`
         background: #1877F2;
         border-radius: 5px;
         border: none;
-   
+        cursor: pointer;
         font-weight: 700;
         font-size: 14px;
         color: #FFFFFF;

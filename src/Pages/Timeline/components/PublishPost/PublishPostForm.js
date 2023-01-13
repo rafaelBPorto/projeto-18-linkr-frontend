@@ -3,14 +3,17 @@ import React, { useState } from "react";
 import { StylePublishPostForm } from "../../../../assets/css/PublishPostStyles/StylePublishPostForm";
 import BASE_URL from "../../../../constants/URL";
 
-export default function PublishPostForm() {
+export default function PublishPostForm({setUpdate}) {
   const [link, setLink] = useState("");
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   const token = localStorage.getItem("token")
 
   async function handleSubmit(e) {
+    console.log('clicou no submit')
     e.preventDefault();
+
 
     const body = {
       link,
@@ -18,6 +21,7 @@ export default function PublishPostForm() {
     }
 
     try {
+      setDisabled(true);
       await axios.post(`${BASE_URL}/publish-post`, body,
         {
           headers: {
@@ -26,6 +30,8 @@ export default function PublishPostForm() {
         });
       setLink("");
       setDescription("");
+      setUpdate(true);
+      setDisabled(false);
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +55,7 @@ export default function PublishPostForm() {
         placeholder="Awesome article about #javascript"
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button type="onSubmit">Publish</button>
+      <button disabled={disabled} type="onSubmit">Publish</button>
     </StylePublishPostForm>
   )
 }
