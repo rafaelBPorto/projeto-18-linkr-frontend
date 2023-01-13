@@ -29,7 +29,7 @@ export default function TimeLine() {
             const getTrends = await axios.get(`${BASE_URL}/trends`, {});
             setTrends(getTrends.data);
 
-            setUpdate(true);
+            // setUpdate(true);
         } catch (error) {
             console.log(error.response.data);
         }
@@ -47,7 +47,7 @@ export default function TimeLine() {
                 <StyleDescriptionPAge>
                     timeline
                 </StyleDescriptionPAge>
-                <PublishPost user={user}/>
+                <PublishPost setUpdate={setUpdate} user={user}/>
                 {(posts === null || posts === undefined) ? (
                     <p>carregando...</p>
                 ) : (

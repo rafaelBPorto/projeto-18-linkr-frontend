@@ -15,9 +15,7 @@ export default function Header() {
   const [searchInput, setSearchInput] = useState("");
   const [searchUsers, setSearchUsers] = useState([]);
 
-console.log(userInfo);
- 
-    
+
    
       useEffect(() => {
         if (searchInput.length < 3) {
@@ -27,8 +25,7 @@ console.log(userInfo);
         setSearchUsers( users.filter((i) => i.name.includes(searchInput)));
       }
       }, [searchInput])
-     
-    console.log(searchUsers);
+    
   
 
 

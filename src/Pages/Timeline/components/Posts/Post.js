@@ -89,6 +89,7 @@ export default function Post({ post, setUpdate, token, user }) {
 
     function closeModal() {
         setIsOpen(false);
+        setUpdate(true);
     }
 
     return (
