@@ -17,7 +17,7 @@ export default function TimeLine() {
     const [trends, setTrends] = useState([]);
     const [posts, setPosts] = useState();
     const [update, setUpdate] = useState(false);
-
+    
     async function getPost() {
         try {
             const postsPromisses = await axios.get(`${BASE_URL}/timeline`, {
