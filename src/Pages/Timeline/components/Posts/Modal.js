@@ -1,12 +1,13 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import Modal from 'react-modal'
 import styled from 'styled-components';
 import BASE_URL from '../../../../constants/URL';
 
 
-export function ModalPost({ modalIsOpen, setIsOpen, afterOpenModal, closeModal, openModal, setUpdate, token, id}) {
-    
+export function ModalPost({ modalIsOpen, setIsOpen, afterOpenModal, closeModal, openModal, setUpdate, token, id }) {
+
+    const [load, setLoad] = useState(false)
     async function deletePost(postId, token) {
         const authorization = {
             headers: {
@@ -15,13 +16,15 @@ export function ModalPost({ modalIsOpen, setIsOpen, afterOpenModal, closeModal, 
         };
 
         try {
+            setLoad(true);
             await axios.delete(`${BASE_URL}/delete-post/${postId}`, authorization);
         } catch (error) {
             alert("Não foi possível excluir o post!");
         }
 
         setUpdate(true);
-        closeModal()
+        setLoad(true);
+        closeModal();
     }
 
     return (
@@ -33,15 +36,27 @@ export function ModalPost({ modalIsOpen, setIsOpen, afterOpenModal, closeModal, 
             contentLabel="Example Modal"
         >
             <StyleModalDelete >
-                <h1>
-                    Are you sure you want to delete this post?
-                </h1>
-                <div>
-                    <Button colorFont='#1877F2' backColor="#FFFFFF" onClick={(() =>closeModal())}>No, go back</Button>
-                    <Button colorFont='#FFFFFF' backColor="#1877F2" onClick={() => deletePost(id, token) }>Yes, delete it</Button>
-                </div>
-            </StyleModalDelete>
-        </Modal>
+
+                {load ? (
+                    <>
+                    <h1>
+                        deleting...
+                    </h1>
+                    </>
+                ) : (
+                    <>
+                        <h1>
+                            Are you sure you want to delete this post?
+                        </h1>
+                        <div>
+                            <Button colorFont='#1877F2' backColor="#FFFFFF" onClick={(() => closeModal())}>No, go back</Button>
+                            <Button colorFont='#FFFFFF' backColor="#1877F2" onClick={() => deletePost(id, token)}>Yes, delete it</Button>
+                        </div>
+                    </>
+                )
+                }
+            </StyleModalDelete >
+        </Modal >
     )
 }
 
@@ -92,7 +107,7 @@ const Button = styled.button`
     font-weight: 700;
     font-size: 18px;
     line-height: 22px;
-    color: ${props=> props.colorFont};
+    color: ${props => props.colorFont};
     
     width: 134px;
     height: 37px;
