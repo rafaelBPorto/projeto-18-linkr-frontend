@@ -7,6 +7,10 @@ export const StylePostLeft = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    p {
+        color: white;
+        margin-top: 5px;
+    }
     
 `
 

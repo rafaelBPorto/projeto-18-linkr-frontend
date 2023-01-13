@@ -22,7 +22,7 @@ import { tagStyle } from "../../../../Components/styleTagify";
 import { ModalPost } from "./Modal";
 
 
-export default function Post({ post, setUpdate, token, user }) {
+export default function Post({ post, update, setUpdate, token, user }) {
     const {
         id,
         user_id,
@@ -49,6 +49,8 @@ export default function Post({ post, setUpdate, token, user }) {
 
         try {
             if (liked) {
+
+                setLiked(false);
                 await axios.delete(`${BASE_URL}/likes`,
                     {
                         headers: {
@@ -57,17 +59,19 @@ export default function Post({ post, setUpdate, token, user }) {
                         }
                     });
 
-
-                setLiked(false);
+               
+                setUpdate(true);
+               
             } else if (!liked) {
+                setLiked(true);
                 await axios.post(`${BASE_URL}/likes`, body,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
                     });
-
-                setLiked(true);
+              
+                setUpdate(true);
             }
 
         } catch (err) {
@@ -101,6 +105,13 @@ export default function Post({ post, setUpdate, token, user }) {
                     {liked ?
                         <StylePostIcon onClick={() => handleLike()} src={heartRed} /> :
                         <StylePostIcon onClick={() => handleLike()} src={heartOutline} />}
+                        
+                        {(likedById[0] === null) && (
+                          <p> 0 likes</p>
+                        ) }
+                        {(likedById.length >= 1 && likedById[0] !== null) && (
+                          <p> {likedById.length} likes</p>
+                        ) }
 
                 </StylePostLeft>
 
