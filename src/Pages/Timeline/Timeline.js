@@ -42,7 +42,7 @@ export default function TimeLine() {
     return (
         <>
         <PageContainer>
-            {/* <Header />  */}
+            <Header /> 
             <StylePage>
                 <StyleDescriptionPAge>
                     timeline
