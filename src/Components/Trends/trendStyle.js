@@ -39,4 +39,8 @@ export const TrendsContainer = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
   }
+
+  @media (max-width: 811px) {
+        display: none;
+    }
 `;

@@ -17,7 +17,7 @@ export default function TimeLine() {
     const [trends, setTrends] = useState([]);
     const [posts, setPosts] = useState();
     const [update, setUpdate] = useState(false);
-    
+
     async function getPost() {
         try {
             const postsPromisses = await axios.get(`${BASE_URL}/timeline`, {
@@ -35,47 +35,47 @@ export default function TimeLine() {
     }
 
     useEffect(() => {
-            getPost()
-            setUpdate(false);
+        getPost()
+        setUpdate(false);
     }, [update])
 
     return (
         <>
-        <PageContainer>
-            <Header /> 
-            <StylePage>
-                <StyleDescriptionPAge>
-                    timeline
-                </StyleDescriptionPAge>
-                <PublishPost setUpdate={setUpdate} user={user}/>
-                {(posts === null || posts === undefined) ? (
-                    <p>carregando...</p>
-                ) : (
-                    <>
-                        {posts.map((post, idx) => <Post
-                            key={idx}
-                            post ={post}
-                            user={user}
-                            token={token}
-                            setUpdate={setUpdate}
-                            update={update}
+            <PageContainer>
+                <Header />
+                <StylePage>
+                    <StyleDescriptionPAge>
+                        timeline
+                    </StyleDescriptionPAge>
+                    <PublishPost setUpdate={setUpdate} user={user} />
+                    {(posts === null || posts === undefined) ? (
+                        <p>carregando...</p>
+                    ) : (
+                        <>
+                            {posts.map((post, idx) => <Post
+                                key={idx}
+                                post={post}
+                                user={user}
+                                token={token}
+                                setUpdate={setUpdate}
+                                update={update}
 
-                        />)}
-                    </>
-                )}
-                
-            </StylePage>
-            <TrendsContainer>
-            <h1>Trending</h1>
-            <hr></hr>
-            <div>
-            {trends.map((i, idx) => (
-            <Trend key = {idx}
-            trend = {i.trend}/>
-       ))}
-        </div>
-        
-      </TrendsContainer>
+                            />)}
+                        </>
+                    )}
+
+                </StylePage>
+                <TrendsContainer>
+                    <h1>Trending</h1>
+                    <hr></hr>
+                    <div>
+                        {trends.map((i, idx) => (
+                            <Trend key={idx}
+                                trend={i.trend} />
+                        ))}
+                    </div>
+
+                </TrendsContainer>
             </PageContainer>
         </>
     )
