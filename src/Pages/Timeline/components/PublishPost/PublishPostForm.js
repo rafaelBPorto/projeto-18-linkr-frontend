@@ -11,7 +11,6 @@ export default function PublishPostForm({setUpdate}) {
   const token = localStorage.getItem("token")
 
   async function handleSubmit(e) {
-    console.log('clicou no submit')
     e.preventDefault();
 
 
