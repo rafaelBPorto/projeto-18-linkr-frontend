@@ -1,2 +1,2 @@
-const BASE_URL = "//localhost:4000";
+const BASE_URL = "https://linkr2.onrender.com";
 export default BASE_URL;
