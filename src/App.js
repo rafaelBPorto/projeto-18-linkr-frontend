@@ -6,7 +6,7 @@ import HashtagPage from "./Pages/Hashtag/hashtags";
 import SignIn from "./Pages/SignIn/SignIn.js";
 import SignUp from "./Pages/SignUp/SignUp.js";
 import TimeLine from "./Pages/Timeline/Timeline";
-
+import Modal, { ModalProvider} from 'styled-react-modal'
 
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <ModalProvider>
       <BrowserRouter>
       <UserContext.Provider value={[userToken, setUserToken]}>
         <Routes>
@@ -26,6 +27,7 @@ function App() {
         </Routes>
         </UserContext.Provider>
       </BrowserRouter>
+      </ModalProvider>
     </>
   );
 }

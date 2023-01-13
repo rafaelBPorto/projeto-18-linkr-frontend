@@ -19,6 +19,8 @@ import BASE_URL from "../../../../constants/URL";
 import { useNavigate } from "react-router-dom";
 import { ReactTagify } from "react-tagify";
 import { tagStyle } from "../../../../Components/styleTagify";
+import { ModalPost } from "./Modal";
+
 
 export default function Post({ post, setUpdate, token, user }) {
     const {
@@ -36,7 +38,7 @@ export default function Post({ post, setUpdate, token, user }) {
     const userId = user.id;
     const [liked, setLiked] = useState(false);
     const navigate = useNavigate();
-
+    const token1 = token;
 
     useEffect(() => {
         likedById.map((i) => (i === userId) ? setLiked(true) : "")
@@ -67,27 +69,27 @@ export default function Post({ post, setUpdate, token, user }) {
 
                 setLiked(true);
             }
+
         } catch (err) {
             console.log(err.response.data);
         }
     }
 
-    async function deletePost(postId) {
-        const authorization = {
-            headers: {
-                authorization: `Bearer ${token}`,
-            },
-        };
+    let subtitle;
+    const [modalIsOpen, setIsOpen] = React.useState(false);
 
-        try {
-            await axios.delete(`${BASE_URL}/delete-post/${postId}`, authorization);
-        } catch (error) {
-            alert("Não foi possível excluir o post!");
-        }
-
-        setUpdate(true);
+    function openModal() {
+        setIsOpen(true);
     }
 
+    function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        subtitle.style.color = '#f00';
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     return (
         <>
@@ -106,7 +108,7 @@ export default function Post({ post, setUpdate, token, user }) {
                         <h1>
                             {name}
                             {userId === user_id && (
-                                <img src={trahsIcon} alt="trash" onClick={() => deletePost(id)} />
+                                <img src={trahsIcon} alt="trash" onClick={openModal}/>
                             )}
                         </h1>
 
@@ -137,7 +139,18 @@ export default function Post({ post, setUpdate, token, user }) {
                     </StylePostLink>
                 </div>
             </StylePost>
+            <ModalPost
+                modalIsOpen={modalIsOpen}
+                setIsOpen={setIsOpen}
+                openModal={openModal}
+                afterOpenModal={afterOpenModal}
+                closeModal={closeModal}
+                setUpdate={setUpdate}
+                token={token1}
+                id={id}
+                />
 
         </>
     );
 }
+
