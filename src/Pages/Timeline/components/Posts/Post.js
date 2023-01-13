@@ -39,6 +39,7 @@ export default function Post({ post, update, setUpdate, token, user }) {
     const [liked, setLiked] = useState(false);
     const navigate = useNavigate();
     const token1 = token;
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
         likedById.map((i) => (i === userId) ? setLiked(true) : "")
@@ -46,7 +47,8 @@ export default function Post({ post, update, setUpdate, token, user }) {
 
     async function handleLike() {
         const body = { post_id: id }
-
+        setDisabled(true);
+        
         try {
             if (liked) {
 
@@ -61,6 +63,7 @@ export default function Post({ post, update, setUpdate, token, user }) {
 
                
                 setUpdate(true);
+                setDisabled(false);
                
             } else if (!liked) {
                 setLiked(true);
@@ -72,6 +75,7 @@ export default function Post({ post, update, setUpdate, token, user }) {
                     });
               
                 setUpdate(true);
+                setDisabled(false);
             }
 
         } catch (err) {
@@ -103,8 +107,8 @@ export default function Post({ post, update, setUpdate, token, user }) {
                     <StyleUserImg src={photo} />
 
                     {liked ?
-                        <StylePostIcon onClick={() => handleLike()} src={heartRed} /> :
-                        <StylePostIcon onClick={() => handleLike()} src={heartOutline} />}
+                        <StylePostIcon onClick={disabled ? () => {} : () => handleLike()} src={heartRed} /> :
+                        <StylePostIcon onClick={disabled ? () => {} : () => handleLike()} src={heartOutline} />}
                         
                         {(likedById[0] === null) && (
                           <p> 0 likes</p>
